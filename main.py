@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, render_template
 import pyodbc
 from sqlalchemy import create_engine, URL
 
@@ -12,15 +12,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def home():
-    return """
-    <h1>Hej, världen!</h1>
-    <h3>Categories:</h3>
-    <a href="/electronics">Electronics</a>
-    <a href="/outdoor_and_gardening">Outdoor</a>
-    <a href="/dog_supplies">Dog toys</a>
-    <a href="/fitness_accessories">Sport</a>
-    <a href="/home-and-kitchen">Home and Kitchen</a>
-    """
+    return render_template("index.html")
 
 @app.route('/electronics')
 def category1():
@@ -52,5 +44,6 @@ def category5():
     <h1>Knives to kill you spouse</h1>
     """
 
-
+if __name__ == '__main__':
+    app.run(debug=True)
 
