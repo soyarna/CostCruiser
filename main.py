@@ -16,11 +16,10 @@ def home():
     <h1>Hej, världen!</h1>
     <h3>Categories:</h3>
     <a href="/electronics">Electronics</a>
-    <a href="/outdoor">Outdoor</a>
-    <a href="/dog-toys">Dog toys</a>
-    <a href="/sports">Sport</a>
-    <a href="/Home-and-kitchen">Home and Kitchen</a>
-    <a href="/Gardening">Gardening</a>
+    <a href="/outdoor_and_gardening">Outdoor</a>
+    <a href="/dog_supplies">Dog toys</a>
+    <a href="/fitness_accessories">Sport</a>
+    <a href="/home-and-kitchen">Home and Kitchen</a>
     """
 
 @app.route('/electronics')
