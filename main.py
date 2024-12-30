@@ -80,9 +80,55 @@ def category4():
 
 @app.route('/home-and-kitchen')
 def category5():
-    return """
-    <h1>Knives to kill you spouse</h1>
-    """
+    with Session() as session:
+        result = session.execute(text("""
+            SELECT 
+	            s.store_name,
+	            p.product_name,
+	            CAST(p.price AS INT) AS price,
+	            CASE
+		            WHEN p.ratings IS NULL THEN 'N/A'
+		            ELSE CAST(p.ratings AS VARCHAR)
+	            END AS ratings,
+	            p.image,
+                p.no_ratings,
+	            p.website_url
+            FROM Product AS p
+        INNER JOIN Category AS c ON p.category_id = c.category_id
+        INNER JOIN Store AS s ON p.store_id = s.store_id
+        WHERE c.category_id = 4
+        ORDER BY p.no_ratings DESC;
+        """)).fetchall()
+
+        # Skapa HTML-struktur för att visa produkter
+        html_content = """
+        <h1>Home and Kitchen</h1>
+        <table border="1">
+            <tr>
+                <th>Store Name</th>
+                <th>Product Name</th>
+                <th>Price</th>
+                <th>Ratings</th>
+                <th>Image</th>
+            </tr>
+        """
+        
+        # Lägg till produkter i HTML-tabellen
+        for row in result:
+            html_content += f"""
+            <tr>
+                <td>{row.store_name}</td>
+                <td><a href="{row.website_url}" target="_blank">{row.product_name}</a></td>
+                <td>{row.price}:-</td>
+                <td>{row.ratings}</td>
+                <td><img src="{row.image}" alt="Image coming soon"></td>
+            </tr>
+            """
+        
+        html_content += "</table>"
+
+    # Returnera HTML-innehållet
+    return html_content
 
 
 
