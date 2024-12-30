@@ -12,5 +12,21 @@ app = Flask(__name__)
 
 @app.route('/')
 def home():
-    return """<h1>Hej, världen!</h1>
- <h3>Hej, världen!</h3>   """ 
+    return """
+    <h1>Hej, världen!</h1>
+    <h3>Categories:</h3>
+    <a href="/electronics">electronics</a>
+    <a href="/outdoor">outdoor</a>
+    """
+
+@app.route('/electronics')
+def category1():
+    return """
+    <h1>ELEKTRONIK</h1>
+    """
+
+@app.route('/outdoor')
+def category2():
+    return """
+    <h1>OUTDOOR</h1>
+    """
