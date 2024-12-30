@@ -29,36 +29,29 @@ def category1():
     <h1>ELEKTRONIK</h1>
     """
 
-@app.route('/outdoor')
+@app.route('/outdoor_and_gardening')
 def category2():
     return """
     <h1>OUTDOOR</h1>
     """
 
-@app.route('/dog-toys')
+@app.route('/dog_supplies')
 def category3():
     return """
     <h1>woofwoof</h1>
     """
 
-@app.route('/sports')
+@app.route('/fitness_accessories')
 def category4():
     return """
     <h1>SPORTS</h1>
     """
 
-@app.route('/Home-and-kitchen')
+@app.route('/home-and-kitchen')
 def category5():
     return """
     <h1>Knives to kill you spouse</h1>
     """
 
 
-@app.route('/Gardening')
-def category6():
-    return """
-    <h1>Gardening</h1>
-    """
 
-# hej hej
-#hej hej
