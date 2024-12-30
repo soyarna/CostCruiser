@@ -18,6 +18,7 @@ def home():
     <a href="/electronics">electronics</a>
     <a href="/outdoor">outdoor</a>
     <a href="/dog-toys">Dog toys</a>
+    <a href="/sports">sport</a>
     """
 
 @app.route('/electronics')
@@ -36,4 +37,10 @@ def category2():
 def category3():
     return """
     <h1>woofwoof</h1>
+    """
+
+@app.route('/sports')
+def category4():
+    return """
+    <h1>SPORTS</h1>
     """
