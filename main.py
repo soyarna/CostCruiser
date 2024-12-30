@@ -15,10 +15,11 @@ def home():
     return """
     <h1>Hej, världen!</h1>
     <h3>Categories:</h3>
-    <a href="/electronics">electronics</a>
-    <a href="/outdoor">outdoor</a>
+    <a href="/electronics">Electronics</a>
+    <a href="/outdoor">Outdoor</a>
     <a href="/dog-toys">Dog toys</a>
-    <a href="/sports">sport</a>
+    <a href="/sports">Sport</a>
+    <a href="/Home-and-kitchen">Home and Kitchen</a>
     """
 
 @app.route('/electronics')
@@ -43,4 +44,10 @@ def category3():
 def category4():
     return """
     <h1>SPORTS</h1>
+    """
+
+@app.route('/Home-and-kitchen')
+def category5():
+    return """
+    <h1>Knives to kill you spouse</h1>
     """
