@@ -139,7 +139,3 @@ def category5():
 
     # Returnera HTML-innehållet
     return html_content
-
-if __name__ == '__main__':
-    app.run(debug=True)
-
