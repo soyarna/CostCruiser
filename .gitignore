@@ -81,6 +81,3 @@ celerybeat-schedule
 *.sublime-workspace
 *.sublime-project
 *.code-workspace
-
-# Image
-image/
