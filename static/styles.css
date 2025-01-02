@@ -1,0 +1,49 @@
+.border {
+    border-top: 60px solid #073858;
+}
+
+.header{
+    text-align: center; 
+    margin-top: -60px;
+}
+
+.hero{
+
+    text-align: center;
+}
+
+.bon{
+   text-align:center;
+}
+
+.nav{
+    margin-top: -462px; 
+    padding-left: 10px;
+}
+
+.dropdown{
+    appearance: none; 
+    border: none; 
+    background-color: transparent; 
+    font-size: 36px; 
+    width: 50px;
+    
+}
+
+.values{
+    font-size: 15px;
+}
+
+.homebutton{
+    background-color:#f4854f;
+    color: #073858;
+    border-radius: 8px;
+    font-weight: bolder;
+    padding-top: 0.5%;
+    padding-bottom: 0.5%;
+    font-family: Copperplate;
+}
+
+.cat-h1{
+    text-align: center;
+}
