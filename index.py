@@ -7,6 +7,7 @@ def index(title, body):
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>{title}</title>
+        <link rel="stylesheet" type="text/css" href="styles.css">
     </head>
     <body style="border-top: 60px solid #073858;">
     <div style="text-align: center; margin-top: -60px;">
@@ -15,17 +16,17 @@ def index(title, body):
     <div style="text-align: center;">
         <img src="static/image/1update.png" alt="CostCruiser">
     </div>
-        <nav style = "text-align:center;">
+    <h4 style = "text-align:center;">Bon Voyage</h4>
+        <nav style="margin-top: -462px; padding-left: 10px;">
         <label for="category"></label>
-        <select style= "padding:10px 30px"; name="forma" onchange="window.location.href=this.value;">
-            <option value="" selected disabled hidden>Select a category</option>
-            <option value="/electronics">Electronics</option>
-            <option value="/outdoor_and_gardening">Outdoor & Gardening</option>
-            <option value="/dog_supplies">Dog supplies</option>
-            <option value="/fitness_accessories">Fitness Accessories</option>
-            <option value="/home-and-kitchen">Home & Kitchen</option>
+        <select  style= "appearance: none; border: none; background-color: transparent; font-size: 36px; width: 50px;" name="forma" onchange="window.location.href=this.value;">
+            <option value="" selected disabled hidden>&#x2693</option>
+            <option style= "font-size: 15px;" value="/electronics">Electronics</option>
+            <option style= "font-size: 15px;" value="/outdoor_and_gardening">Outdoor & Gardening</option>
+            <option style= "font-size: 15px;" value="/dog_supplies">Dog supplies</option>
+            <option style= "font-size: 15px;" value="/fitness_accessories">Fitness Accessories</option>
+            <option style= "font-size: 15px;" value="/home-and-kitchen">Home & Kitchen</option>
         </select>
-        <h4 style = "text-align:center;">Bon Voyage</h4>
         </nav>
         {body}
     </body>
