@@ -172,11 +172,11 @@ def category5():
             """
 
     # Read the HTML template
-    with open("template.html", "r") as file:
+    with open("category_template.html", "r") as file:
         template = file.read()
 
     # Replace placeholders in the template
-    html_content = template.replace("{{category}}", "Home and Kitchen").replace("{{rows}}", rows)
+    html_content = template.replace("{{category}}", "Home & Kitchen").replace("{{rows}}", rows)
 
     # Return the final HTML
     return html_content
