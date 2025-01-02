@@ -158,22 +158,10 @@ def category5():
         ORDER BY p.no_ratings DESC;
         """)).fetchall()
 
-        # Skapa HTML-struktur för att visa produkter
-        html_content = """
-        <h1>Home and Kitchen</h1>
-        <table border="1">
-            <tr>
-                <th>Store Name</th>
-                <th>Product Name</th>
-                <th>Price</th>
-                <th>Ratings</th>
-                <th>Image</th>
-            </tr>
-        """
-        
-        # Lägg till produkter i HTML-tabellen
+        # Generate rows for the table
+        rows = ""
         for row in result:
-            html_content += f"""
+            rows += f"""
             <tr>
                 <td>{row.store_name}</td>
                 <td><a href="{row.website_url}" target="_blank">{row.product_name}</a></td>
@@ -182,8 +170,13 @@ def category5():
                 <td><img src="{row.image}" alt="Image coming soon"></td>
             </tr>
             """
-        
-        html_content += "</table>"
 
-    # Returnera HTML-innehållet
+    # Read the HTML template
+    with open("category_template.html", "r") as file:
+        template = file.read()
+
+    # Replace placeholders in the template
+    html_content = template.replace("{{category}}", "Home & Kitchen").replace("{{rows}}", rows)
+
+    # Return the final HTML
     return html_content
