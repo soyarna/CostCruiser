@@ -66,9 +66,48 @@ def category1():
 
 @app.route('/outdoor_and_gardening')
 def category2():
-    return """
-    <h1>OUTDOOR</h1>
-    """
+    with Session() as session:
+        result = session.execute(text("""
+            SELECT 
+	            s.store_name,
+	            p.product_name,
+	            CAST(p.price AS INT) AS price,
+	            CASE
+		            WHEN p.ratings IS NULL THEN 'N/A'
+		            ELSE CAST(p.ratings AS VARCHAR)
+	            END AS ratings,
+	            p.image,
+                p.no_ratings,
+	            p.website_url
+            FROM Product AS p
+        INNER JOIN Category AS c ON p.category_id = c.category_id
+        INNER JOIN Store AS s ON p.store_id = s.store_id
+        WHERE c.category_id = 3
+        ORDER BY p.no_ratings DESC;
+        """)).fetchall()
+
+        # Generate rows for the table
+        rows = ""
+        for row in result:
+            rows += f"""
+            <tr>
+                <td>{row.store_name}</td>
+                <td><a href="{row.website_url}" target="_blank">{row.product_name}</a></td>
+                <td>{row.price}:-</td>
+                <td>{row.ratings}</td>
+                <td><img src="{row.image}" alt="Image coming soon"></td>
+            </tr>
+            """
+
+    # Read the HTML template
+    with open("category_template.html", "r") as file:
+        template = file.read()
+
+    # Replace placeholders in the template
+    html_content = template.replace("{{category}}", "Outdoor & Gardening").replace("{{rows}}", rows)
+
+    # Return the final HTML
+    return html_content
 
 @app.route('/dog_supplies')
 def category3():
@@ -174,3 +213,4 @@ def category5():
 
     # Return the final HTML
     return html_content
+
