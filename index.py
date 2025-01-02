@@ -12,11 +12,15 @@ def index(title, body):
         <h1>Welcome to CostCruiser</h1>
         <h3>Categories:</h3>
         <nav>
-            <a href="/electronics">Electronics</a>
-            <a href="/outdoor_and_gardening">Outdoor & Gardening</a>
-            <a href="/dog_supplies">Dog supplies</a>
-            <a href="/fitness_accessories">Fitness Accessories</a>
-            <a href="/home-and-kitchen">Home & Kitchen</a>
+        <label for="category">Start Cruising:</label>
+        <select name="forma" onchange="window.location.href=this.value;">
+            <option value="" selected disabled hidden>Select a category</option>
+            <option value="/electronics">Electronics</option>
+            <option value="/outdoor_and_gardening">Outdoor & Gardening</option>
+            <option value="/dog_supplies">Dog supplies</option>
+            <option value="/fitness_accessories">Fitness Accessories</option>
+            <option value="/home-and-kitchen">Home & Kitchen</option>
+        </select>
         </nav>
         {body}
     </body>

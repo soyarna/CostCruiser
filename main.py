@@ -39,23 +39,11 @@ def category1():
         WHERE c.category_id = 1
         ORDER BY p.no_ratings DESC;
         """)).fetchall()
-
-        # Skapa HTML-struktur för att visa produkter
-        html_content = """
-        <h1>Electronics</h1>
-        <table border="1">
-            <tr>
-                <th>Store Name</th>
-                <th>Product Name</th>
-                <th>Price</th>
-                <th>Ratings</th>
-                <th>Image</th>
-            </tr>
-        """
         
         # Lägg till produkter i HTML-tabellen
+        rows = ""
         for row in result:
-            html_content += f"""
+            rows += f"""
             <tr>
                 <td>{row.store_name}</td>
                 <td><a href="{row.website_url}" target="_blank">{row.product_name}</a></td>
@@ -65,9 +53,14 @@ def category1():
             </tr>
             """
         
-        html_content += "</table>"
+    # Read the HTML template
+    with open("category_template.html", "r") as file:
+        template = file.read()
 
-    # Returnera HTML-innehållet
+    # Replace placeholders in the template
+    html_content = template.replace("{{category}}", "Electronics").replace("{{rows}}", rows)
+
+    # Return the final HTML
     return html_content
 
 
@@ -114,6 +107,7 @@ def category3():
         """
         
         # Lägg till produkter i HTML-tabellen
+        
         for row in result:
             html_content += f"""
             <tr>
