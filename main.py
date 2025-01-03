@@ -60,3 +60,7 @@ def fitness_accessories():
 @app.route('/home_and_kitchen')
 def home_and_kitchen():
     return render_category(category_id=4, category_name="Home & Kitchen")
+
+@app.route('/login')
+def login():
+    return render_template("login.html")
