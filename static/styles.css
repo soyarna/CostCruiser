@@ -1,5 +1,20 @@
+body{
+    margin: 0;
+    padding: 0;
+    position: relative;
+    min-height: 93.4vh;
+}
+
 .border {
     border-top: 60px solid #073858;
+}
+
+.lower_border{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    border-bottom: 200px solid #073858;
 }
 
 .header{
@@ -14,7 +29,19 @@
 
 .bon{
    text-align:center;
+   font-style: italic;
+   font-family: 'Franziska, Georgia, Cambria';
+   font-size: 30px;
+   margin-top: -3px;
 }
+
+.bon2{
+    text-align:center;
+    font-style: italic;
+    font-family: 'Franziska, Georgia, Cambria';
+    font-size: 20px;
+    margin-top:-18px;
+ }
 
 .nav{
     margin-top: -462px; 
@@ -27,6 +54,11 @@
     background-color: transparent; 
     font-size: 36px; 
     width: 50px;
+    position: absolute;
+            top: -52px;
+            left: 10px;
+            width: 50px;
+            height: 40px;
     
 }
 
@@ -39,11 +71,65 @@
     color: #073858;
     border-radius: 8px;
     font-weight: bolder;
-    padding-top: 0.5%;
-    padding-bottom: 0.5%;
+    position: absolute;
+            top: 10px;
+            left: 10px;
     font-family: Copperplate;
 }
 
 .cat-h1{
     text-align: center;
+}
+
+.fa {
+    padding: 10px;
+    font-size: 30px;
+    width: 30px;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 50%;
+    
+}
+
+.fa:hover {
+    opacity: 0.7;
+}
+
+/* Social Media buttons */
+
+  .fa-facebook {
+    background: black;
+    color: #073858;
+}
+  
+  .fa-twitter {
+    background: #073858;
+    color: black;
+}
+
+.fa-linkedin {
+    background: black;
+    color: #073858;
+}
+
+.social-media-icons {
+    position: fixed; /* Keeps the icons in place even when the user scrolls */
+    bottom: 105px; /* Adjust the space from the bottom of the page */
+    left: 50%; /* Centers the icons horizontally */
+    transform: translateX(-50%); /* Corrects the horizontal positioning */
+    display: flex;
+    gap: 15px; /* Space between the icons */
+}
+
+.social-icon {
+    font-size: 30px; /* Size of the icons */
+    color: #073858; /* Color of the icons */
+    text-decoration: none; /* Removes the default underline */
+}
+
+.klarna-icon{
+    position: fixed;
+    bottom: -130px;
+    right: -475%;
+    transform: scale(0.4);
 }
