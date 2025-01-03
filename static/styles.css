@@ -17,6 +17,14 @@ body{
     border-bottom: 200px solid #073858;
 }
 
+.lower_border_category{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    border-bottom: 60px solid #073858;
+}
+
 .header{
     text-align: center; 
     margin-top: -60px;
@@ -115,6 +123,15 @@ body{
 .social-media-icons {
     position: fixed; /* Keeps the icons in place even when the user scrolls */
     bottom: 105px; /* Adjust the space from the bottom of the page */
+    left: 50%; /* Centers the icons horizontally */
+    transform: translateX(-50%); /* Corrects the horizontal positioning */
+    display: flex;
+    gap: 15px; /* Space between the icons */
+}
+
+.social-media-icons-category {
+    position: fixed; /* Keeps the icons in place even when the user scrolls */
+    bottom: 60px; /* Adjust the space from the bottom of the page */
     left: 50%; /* Centers the icons horizontally */
     transform: translateX(-50%); /* Corrects the horizontal positioning */
     display: flex;
