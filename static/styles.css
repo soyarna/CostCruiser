@@ -148,14 +148,64 @@ body{
 
 .klarna-icon{
     position: fixed;
-    bottom: -130px;
-    right: -475%;
+    bottom: -35px;
+    right: 50px;
     transform: scale(0.4);
+    width: 100px;
+    height: auto;
+
 }
 
 .klarna-icon-category{
     position: fixed;
-    bottom: -55px;
-    right: -420%;
+    bottom: -48px;
+    right: 50px;
     transform: scale(0.3);
+    width: 100px;
+    height: auto;
 }
+
+.cat{
+    border-radius: 10px;
+    background-color: grey;
+    color: white;
+    font-family: Georgia, serif;
+    font-size: medium;
+    font-weight: bolder;
+}
+
+
+.bordercat{
+    text-align: center;
+    border-radius: 5px;
+    margin-right: 5%;
+    background-color: #145b7f;
+    color: white;
+    font-family: Georgia, serif;
+    font-size: medium;
+    font-weight: bolder;
+    width: 100px;
+    height: 200px;
+    padding: 20px;
+}
+
+.bordercatname{
+    color: white;
+    font-family: Georgia, serif;
+}
+
+.bordercatimg{
+    border-radius: 5px;
+    margin-right: 5%;
+    width: 100px;
+    height: 200px;
+    text-align: center;
+    color: #145b7f;
+    font-family: Georgia, serif;
+    font-size: medium;
+    font-weight: bolder;
+    object-fit: cover;
+    border: 2px solid #145b7f;
+    border-radius: 5px;
+}
+

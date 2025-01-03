@@ -40,8 +40,12 @@ def index(title, body):
         </a>
         <a href="https://www.facebook.com/" target="_blank" class="social-icon">
             <i class="fa fa-facebook"></i>
+        </a>
+        </div>
         <div class="klarna-icon">
-        <a href="https://www.klarna.com/se/villkor/" target="_blank"><img src="static/image/Klarna.png" alt="Klarna"</a>
+            <a href="https://www.klarna.com/se/villkor/" target="_blank">
+                <img src="static/image/Klarna.png" alt="Klarna">
+            </a>
         </div>
         {body}
     </body>

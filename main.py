@@ -45,11 +45,11 @@ def category1():
         for row in result:
             rows += f"""
             <tr>
-                <td>{row.store_name}</td>
-                <td><a href="{row.website_url}" target="_blank">{row.product_name}</a></td>
-                <td>{row.price}:-</td>
-                <td>{row.ratings}</td>
-                <td><img src="{row.image}" alt="Image coming soon"></td>
+                <td class="bordercat">{row.store_name}</td>
+                <td class="bordercat"><a class="bordercatname" href="{row.website_url}" target="_blank">{row.product_name}</a></td>
+                <td class="bordercat">{row.price}:-</td>
+                <td class="bordercat">{row.ratings}</td>
+                <td class="bordercatimg"><img src="{row.image}" alt="Image coming soon"></td>
             </tr>
             """
         
@@ -91,11 +91,11 @@ def category2():
         for row in result:
             rows += f"""
             <tr>
-                <td>{row.store_name}</td>
-                <td><a href="{row.website_url}" target="_blank">{row.product_name}</a></td>
-                <td>{row.price}:-</td>
-                <td>{row.ratings}</td>
-                <td><img src="{row.image}" alt="Image coming soon"></td>
+                <td class="bordercat">{row.store_name}</td>
+                <td class="bordercat"><a class="bordercatname" href="{row.website_url}" target="_blank">{row.product_name}</a></td>
+                <td class="bordercat">{row.price}:-</td>
+                <td class="bordercat">{row.ratings}</td>
+                <td class="bordercatimg"><img src="{row.image}" alt="Image coming soon"></td>
             </tr>
             """
 
@@ -150,11 +150,11 @@ def category3():
         for row in result:
             html_content += f"""
             <tr>
-                <td>{row.store_name}</td>
-                <td><a href="{row.website_url}" target="_blank">{row.product_name}</a></td>
-                <td>{row.price}:-</td>
-                <td>{row.ratings}</td>
-                <td><img src="{row.image}" alt="Image coming soon"></td>
+                <td class="bordercat">{row.store_name}</td>
+                <td class="bordercat"><a class="bordercatname" href="{row.website_url}" target="_blank">{row.product_name}</a></td>
+                <td class="bordercat">{row.price}:-</td>
+                <td class="bordercat">{row.ratings}</td>
+                <td class="bordercatimg"><img src="{row.image}" alt="Image coming soon"></td>
             </tr>
             """
         
@@ -190,11 +190,11 @@ def category4():
         for row in result:
             rows += f"""
             <tr>
-                <td>{row.store_name}</td>
-                <td><a href="{row.website_url}" target="_blank">{row.product_name}</a></td>
-                <td>{row.price}:-</td>
-                <td>{row.ratings}</td>
-                <td><img src="{row.image}" alt="Image coming soon"></td>
+                <td class="bordercat">{row.store_name}</td>
+                <td class="bordercat"><a class="bordercatname" href="{row.website_url}" target="_blank">{row.product_name}</a></td>
+                <td class="bordercat">{row.price}:-</td>
+                <td class="bordercat">{row.ratings}</td>
+                <td class="bordercatimg"><img src="{row.image}" alt="Image coming soon"></td>
             </tr>
             """
 
@@ -235,11 +235,11 @@ def category5():
         for row in result:
             rows += f"""
             <tr>
-                <td>{row.store_name}</td>
-                <td><a href="{row.website_url}" target="_blank">{row.product_name}</a></td>
-                <td>{row.price}:-</td>
-                <td>{row.ratings}</td>
-                <td><img src="{row.image}" alt="Image coming soon"></td>
+                <td class="bordercat">{row.store_name}</td>
+                <td class="bordercat"><a class="bordercatname" href="{row.website_url}" target="_blank">{row.product_name}</a></td>
+                <td class="bordercat">{row.price}:-</td>
+                <td class="bordercat">{row.ratings}</td>
+                <td class="bordercatimg"><img src="{row.image}" alt="Image coming soon"></td>
             </tr>
             """
 
