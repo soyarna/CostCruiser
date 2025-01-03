@@ -2,7 +2,6 @@ from flask import Flask, render_template, jsonify, render_template_string
 from sqlalchemy.orm import sessionmaker
 import pyodbc
 from sqlalchemy import create_engine, URL, text
-from index import index
 
 url = URL.create(drivername="mssql+pyodbc",
                  host="localhost",
@@ -16,7 +15,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def home():
-    return render_template_string(index("CostCruiser", ""))
+    return render_template("index.html")
 
 def render_category(category_id, category_name):
     with Session() as session:
@@ -36,7 +35,7 @@ def render_category(category_id, category_name):
         """ for row in result)
 
     # Read the template
-    with open("category_template.html", "r") as file:
+    with open("templates/category_template.html", "r") as file:
         template = file.read()
 
     # Replace placeholders and return the final HTML

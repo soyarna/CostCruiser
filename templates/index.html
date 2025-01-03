@@ -1,12 +1,10 @@
-def index(title, body):
-    return f"""
-    <!DOCTYPE html>
+<!DOCTYPE html>
     <html lang="en">
     <head>
         <link rel="shortcut icon" type="image/x-icon" href="/static/image/2.ico" />
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>{title}</title>
+        <title>Costcruiser</title>
         <link rel="stylesheet" type="text/css" href="/static/styles.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
@@ -15,6 +13,7 @@ def index(title, body):
     <div class="header">
         <img src="static/image/4update.png" alt="CostCruiser">
     </div>
+        <button class="loginbutton" onclick="window.location.href='/';">Login / Sign up</button>
     <div class="hero">
         <img src="static/image/1update.png" alt="CostCruiser">
     </div>
@@ -47,7 +46,6 @@ def index(title, body):
                 <img src="static/image/Klarna.png" alt="Klarna">
             </a>
         </div>
-        {body}
+        
     </body>
     </html>
-    """
