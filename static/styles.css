@@ -235,7 +235,7 @@ body{
     color: #f4854f;
     font-family: Copperplate;
     font-weight: bolder;
-    line-height: 0px;
+    line-height: 10px;
     z-index: -1;
   }
 
@@ -258,6 +258,18 @@ body{
   }
 
 .password_bar input {
+    width: 300px;
+    padding: 3px;
+    font-size: 16px;
+}
+
+.confirm_password_bar{
+    display: flex;
+    justify-content: center;
+    padding-top: 15px;
+  }
+
+.confirm_password_bar input {
     width: 300px;
     padding: 3px;
     font-size: 16px;
@@ -299,6 +311,6 @@ body{
     padding: 7px 15px;
     border: 1;
     position: fixed;
-    margin-bottom: 30%;
+    margin-bottom: 33%;
     margin-left: 20%;
 }
