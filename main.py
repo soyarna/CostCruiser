@@ -46,7 +46,6 @@ def render_category(category_id, category_name):
 def electronics():
     return render_category(category_id=1, category_name="Electronics")
 
-
 @app.route('/garden_and_outdoors')
 def garden_and_outdoors():
     return render_category(category_id=3, category_name="Garden & Outdoor")

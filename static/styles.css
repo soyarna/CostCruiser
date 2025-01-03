@@ -2,7 +2,6 @@ body{
     margin: 0;
     padding: 0;
     position: relative;
-    min-height: 93.4vh;
 }
 
 .border {
@@ -148,7 +147,7 @@ body{
 
 .klarna-icon{
     position: fixed;
-    bottom: -35px;
+    bottom: -25px;
     right: 50px;
     transform: scale(0.4);
     width: 100px;
