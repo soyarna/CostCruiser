@@ -121,27 +121,27 @@ body{
 }
 
 .social-media-icons {
-    position: fixed; /* Keeps the icons in place even when the user scrolls */
-    bottom: 105px; /* Adjust the space from the bottom of the page */
-    left: 50%; /* Centers the icons horizontally */
-    transform: translateX(-50%); /* Corrects the horizontal positioning */
+    position: fixed; 
+    bottom: 105px; 
+    left: 50%; 
+    transform: translateX(-50%); 
     display: flex;
-    gap: 15px; /* Space between the icons */
+    gap: 15px; 
 }
 
 .social-media-icons-category {
-    position: fixed; /* Keeps the icons in place even when the user scrolls */
-    bottom: 60px; /* Adjust the space from the bottom of the page */
-    left: 50%; /* Centers the icons horizontally */
-    transform: translateX(-50%); /* Corrects the horizontal positioning */
+    position: fixed; 
+    bottom: 4px; 
+    left: 50%; 
+    transform: translateX(-50%); 
     display: flex;
-    gap: 15px; /* Space between the icons */
+    gap: 15px; 
 }
 
 .social-icon {
-    font-size: 30px; /* Size of the icons */
-    color: #073858; /* Color of the icons */
-    text-decoration: none; /* Removes the default underline */
+    font-size: 30px; 
+    color: #073858; 
+    text-decoration: none; 
 }
 
 .klarna-icon{
@@ -149,4 +149,11 @@ body{
     bottom: -130px;
     right: -475%;
     transform: scale(0.4);
+}
+
+.klarna-icon-category{
+    position: fixed;
+    bottom: -55px;
+    right: -420%;
+    transform: scale(0.3);
 }
