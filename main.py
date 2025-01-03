@@ -18,238 +18,63 @@ app = Flask(__name__)
 def home():
     return render_template_string(index("CostCruiser", ""))
 
-@app.route('/electronics')
-def category1():
+def render_category(category_id, category_name):
     with Session() as session:
+        # Query the database
         result = session.execute(text("""
             SELECT 
-	            s.store_name,
-	            p.product_name,
-	            CAST(p.price AS INT) AS price,
-	            CASE
-		            WHEN p.ratings IS NULL THEN 'N/A'
-		            ELSE CAST(p.ratings AS VARCHAR)
-	            END AS ratings,
-	            p.image,
+                s.store_name,
+                p.product_name,
+                CAST(p.price AS INT) AS price,
+                CASE
+                    WHEN p.ratings IS NULL THEN 'N/A'
+                    ELSE CAST(p.ratings AS VARCHAR)
+                END AS ratings,
+                p.image,
                 p.no_ratings,
-	            p.website_url
+                p.website_url
             FROM Product AS p
-        INNER JOIN Category AS c ON p.category_id = c.category_id
-        INNER JOIN Store AS s ON p.store_id = s.store_id
-        WHERE c.category_id = 1
-        ORDER BY p.no_ratings DESC;
-        """)).fetchall()
-        
-        # Lägg till produkter i HTML-tabellen
-        rows = ""
-        for row in result:
-            rows += f"""
-            <tr>
-                <td class="bordercat">{row.store_name}</td>
-                <td class="bordercat"><a class="bordercatname" href="{row.website_url}" target="_blank">{row.product_name}</a></td>
-                <td class="bordercat">{row.price}:-</td>
-                <td class="bordercat">{row.ratings}</td>
-                <td class="bordercatimg"><img src="{row.image}" alt="Image coming soon"></td>
-            </tr>
-            """
-        
-    # Read the HTML template
-    with open("category_template.html", "r") as file:
-        template = file.read()
-
-    # Replace placeholders in the template
-    html_content = template.replace("{{category}}", "Electronics").replace("{{rows}}", rows)
-
-    # Return the final HTML
-    return html_content
-
-
-@app.route('/outdoor_and_gardening')
-def category2():
-    with Session() as session:
-        result = session.execute(text("""
-            SELECT 
-	            s.store_name,
-	            p.product_name,
-	            CAST(p.price AS INT) AS price,
-	            CASE
-		            WHEN p.ratings IS NULL THEN 'N/A'
-		            ELSE CAST(p.ratings AS VARCHAR)
-	            END AS ratings,
-	            p.image,
-                p.no_ratings,
-	            p.website_url
-            FROM Product AS p
-        INNER JOIN Category AS c ON p.category_id = c.category_id
-        INNER JOIN Store AS s ON p.store_id = s.store_id
-        WHERE c.category_id = 3
-        ORDER BY p.no_ratings DESC;
-        """)).fetchall()
+            INNER JOIN Category AS c ON p.category_id = c.category_id
+            INNER JOIN Store AS s ON p.store_id = s.store_id
+            WHERE c.category_id = :category_id
+            ORDER BY p.no_ratings DESC;
+        """), {"category_id": category_id}).fetchall()
 
         # Generate rows for the table
-        rows = ""
-        for row in result:
-            rows += f"""
-            <tr>
+        rows = "".join(f"""
+        <tr>
                 <td class="bordercat">{row.store_name}</td>
                 <td class="bordercat"><a class="bordercatname" href="{row.website_url}" target="_blank">{row.product_name}</a></td>
                 <td class="bordercat">{row.price}:-</td>
                 <td class="bordercat">{row.ratings}</td>
-                <td class="bordercatimg"><img src="{row.image}" alt="Image coming soon"></td>
-            </tr>
-            """
+                <td class="bordercatimg"><img src="{row.image}" alt="Image coming soon" onerror="this.onerror=null; this.src='static/image/missing_image.png';"></td>
+        </tr>
+        """ for row in result)
 
-    # Read the HTML template
+    # Read the template
     with open("category_template.html", "r") as file:
         template = file.read()
 
-    # Replace placeholders in the template
-    html_content = template.replace("{{category}}", "Outdoor & Gardening").replace("{{rows}}", rows)
+    # Replace placeholders and return the final HTML
+    return template.replace("{{category}}", category_name).replace("{{rows}}", rows)
 
-    # Return the final HTML
-    return html_content
+@app.route('/electronics')
+def electronics():
+    return render_category(category_id=1, category_name="Electronics")
+
+
+@app.route('/garden_and_outdoors')
+def garden_and_outdoors():
+    return render_category(category_id=3, category_name="Garden & Outdoor")
 
 @app.route('/dog_supplies')
-def category3():
-    with Session() as session:
-        #get product info
-        result = session.execute(text("""
-            SELECT 
-	            s.store_name,
-	            p.product_name,
-	            CAST(p.price AS INT) AS price,
-	            CASE
-		            WHEN p.ratings IS NULL THEN 'N/A'
-		            ELSE CAST(p.ratings AS VARCHAR)
-	            END AS ratings,
-	            p.image,
-                p.no_ratings,
-	            p.website_url
-            FROM Product AS p
-        INNER JOIN Category AS c ON p.category_id = c.category_id
-        INNER JOIN Store AS s ON p.store_id = s.store_id
-        WHERE c.category_id = 5
-        ORDER BY p.no_ratings DESC;
-        """)).fetchall()
-
-       # Skapa HTML-struktur för att visa produkter
-        html_content = """
-        <h1>Dog supplies</h1>
-        <table border="1">
-            <tr>
-                <th>Store Name</th>
-                <th>Product Name</th>
-                <th>Price</th>
-                <th>Ratings</th>
-                <th>Image</th>
-            </tr>
-        """
-        
-        # Lägg till produkter i HTML-tabellen
-        
-        for row in result:
-            html_content += f"""
-            <tr>
-                <td class="bordercat">{row.store_name}</td>
-                <td class="bordercat"><a class="bordercatname" href="{row.website_url}" target="_blank">{row.product_name}</a></td>
-                <td class="bordercat">{row.price}:-</td>
-                <td class="bordercat">{row.ratings}</td>
-                <td class="bordercatimg"><img src="{row.image}" alt="Image coming soon"></td>
-            </tr>
-            """
-        
-        html_content += "</table>"
-
-
-    return render_template_string(index("Dog Supplies", html_content))
+def dog_supplies():
+    return render_category(category_id=5, category_name="Dogs Supplies")
 
 @app.route('/fitness_accessories')
-def category4():
-    with Session() as session:
-        result = session.execute(text("""
-            SELECT 
-	            s.store_name,
-	            p.product_name,
-	            CAST(p.price AS INT) AS price,
-	            CASE
-		            WHEN p.ratings IS NULL THEN 'N/A'
-		            ELSE CAST(p.ratings AS VARCHAR)
-	            END AS ratings,
-	            p.image,
-                p.no_ratings,
-	            p.website_url
-            FROM Product AS p
-        INNER JOIN Category AS c ON p.category_id = c.category_id
-        INNER JOIN Store AS s ON p.store_id = s.store_id
-        WHERE c.category_id = 2
-        ORDER BY p.no_ratings DESC;
-        """)).fetchall()
+def fitness_accessories():
+    return render_category(category_id=2, category_name="Fitness Accessories")
 
-        # Generate rows for the table
-        rows = ""
-        for row in result:
-            rows += f"""
-            <tr>
-                <td class="bordercat">{row.store_name}</td>
-                <td class="bordercat"><a class="bordercatname" href="{row.website_url}" target="_blank">{row.product_name}</a></td>
-                <td class="bordercat">{row.price}:-</td>
-                <td class="bordercat">{row.ratings}</td>
-                <td class="bordercatimg"><img src="{row.image}" alt="Image coming soon"></td>
-            </tr>
-            """
-
-    # Read the HTML template
-    with open("category_template.html", "r") as file:
-        template = file.read()
-
-    # Replace placeholders in the template
-    html_content = template.replace("{{category}}", "Fitness Accessories").replace("{{rows}}", rows)
-
-    # Return the final HTML
-    return html_content
-
-@app.route('/home-and-kitchen')
-def category5():
-    with Session() as session:
-        result = session.execute(text("""
-            SELECT 
-	            s.store_name,
-	            p.product_name,
-	            CAST(p.price AS INT) AS price,
-	            CASE
-		            WHEN p.ratings IS NULL THEN 'N/A'
-		            ELSE CAST(p.ratings AS VARCHAR)
-	            END AS ratings,
-	            p.image,
-                p.no_ratings,
-	            p.website_url
-            FROM Product AS p
-        INNER JOIN Category AS c ON p.category_id = c.category_id
-        INNER JOIN Store AS s ON p.store_id = s.store_id
-        WHERE c.category_id = 4
-        ORDER BY p.no_ratings DESC;
-        """)).fetchall()
-
-        # Generate rows for the table
-        rows = ""
-        for row in result:
-            rows += f"""
-            <tr>
-                <td class="bordercat">{row.store_name}</td>
-                <td class="bordercat"><a class="bordercatname" href="{row.website_url}" target="_blank">{row.product_name}</a></td>
-                <td class="bordercat">{row.price}:-</td>
-                <td class="bordercat">{row.ratings}</td>
-                <td class="bordercatimg"><img src="{row.image}" alt="Image coming soon"></td>
-            </tr>
-            """
-
-    # Read the HTML template
-    with open("category_template.html", "r") as file:
-        template = file.read()
-
-    # Replace placeholders in the template
-    html_content = template.replace("{{category}}", "Home & Kitchen").replace("{{rows}}", rows)
-
-    # Return the final HTML
-    return html_content
-
+@app.route('/home_and_kitchen')
+def home_and_kitchen():
+    return render_category(category_id=4, category_name="Home & Kitchen")

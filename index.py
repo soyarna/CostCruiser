@@ -25,10 +25,10 @@ def index(title, body):
         <select class="dropdown" onchange="window.location.href=this.value;">
             <option value="" selected disabled hidden>&#x2693;</option>
             <option class="values" value="/electronics">Electronics</option>
-            <option class="values" value="/outdoor_and_gardening">Outdoor & Gardening</option>
+            <option class="values" value="/garden_and_outdoors">Outdoor & Gardening</option>
             <option class="values" value="/dog_supplies">Dog supplies</option>
             <option class="values" value="/fitness_accessories">Fitness Accessories</option>
-            <option class="values" value="/home-and-kitchen">Home & Kitchen</option>
+            <option class="values" value="/home_and_kitchen">Home & Kitchen</option>
         </select>
         </nav>
         <div class="social-media-icons">
