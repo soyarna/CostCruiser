@@ -1,4 +1,4 @@
-from flask import Flask, render_template, jsonify, render_template_string
+from flask import Flask, render_template, request
 from sqlalchemy.orm import sessionmaker
 import pyodbc
 from sqlalchemy import create_engine, URL, text
@@ -12,10 +12,6 @@ conn = create_engine(url)
 Session = sessionmaker(bind=conn)
 
 app = Flask(__name__)
-
-@app.route('/')
-def home():
-    return render_template("index.html")
 
 def render_category(category_id, category_name):
     with Session() as session:
@@ -40,6 +36,39 @@ def render_category(category_id, category_name):
 
     # Replace placeholders and return the final HTML
     return template.replace("{{category}}", category_name).replace("{{rows}}", rows)
+
+@app.route('/')
+def home():
+    return render_template("index.html")
+
+@app.route('/search')
+def search():
+
+    search = request.args.get('searchinput')
+
+    with Session() as session:
+        result = session.execute(text("""
+            SELECT top 20
+                image,
+                product_name,
+                FORMAT(price, '0') AS price,
+                website_url
+            FROM product
+            WHERE product_name LIKE :search
+        """), {"search": f"%{search}%"}).fetchall()
+
+        # Generate HTML rows for products
+        rows = "".join(f"""
+        <div class="product-box">
+            <img src="{row.image}" alt="{row.product_name}">
+            <h3>{row.product_name}</h3>
+            <p>{row.price} SEK</p>
+            <button class="buybutton" onclick="window.location.href='{row.website_url}';">!BUY NOW!</button>
+        </div>
+        """ for row in result)
+
+    return render_template("search.html", rows=rows)
+
 
 @app.route('/electronics')
 def electronics():
