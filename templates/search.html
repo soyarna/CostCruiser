@@ -15,8 +15,8 @@
         </div>
     <button class="homebutton" onclick="window.location.href='/';">Back to Homepage</button>
     <form class="search-container" action="/search" method="get">
-        <input type="text" name="searchinput" placeholder="Search for products..." required>
-        <button type="submit">Search</button>
+        <input type="text" class="search-input" name="searchinput" placeholder="Search for products..." required>
+        <button type="submit" class="search-button">Search</button>
     </form>
     <div class="container">
         {{ rows | safe }}

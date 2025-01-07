@@ -13,7 +13,7 @@ Session = sessionmaker(bind=conn)
 
 app = Flask(__name__)
 
-def render_category(category_id, category_name):
+def render_category(category_id, category_name):    
     with Session() as session:
         result = session.execute(text("""
             EXEC GetCategoryProducts :category_id
@@ -48,19 +48,19 @@ def search():
 
     with Session() as session:
         result = session.execute(text("""
-            SELECT top 20
+            SELECT top 100
                 image,
                 product_name,
                 FORMAT(price, '0') AS price,
                 website_url
             FROM product
-            WHERE product_name LIKE :search
+            WHERE LOWER(product_name) LIKE LOWER(:search)
         """), {"search": f"%{search}%"}).fetchall()
 
         # Generate HTML rows for products
         rows = "".join(f"""
         <div class="product-box">
-            <img src="{row.image}" alt="{row.product_name}">
+            <img src="{row.image}" alt="Image coming soon" onerror="this.onerror=null; this.src='static/image/missing_image.png';">
             <h3>{row.product_name}</h3>
             <p>{row.price} SEK</p>
             <button class="buybutton" onclick="window.location.href='{row.website_url}';">!BUY NOW!</button>
