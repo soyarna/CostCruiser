@@ -13,11 +13,7 @@ Session = sessionmaker(bind=conn)
 
 app = Flask(__name__)
 
-@app.route('/')
-def home():
-    return render_template("index.html")
-
-def render_category(category_id, category_name):
+def render_category(category_id, category_name):    
     with Session() as session:
         result = session.execute(text("""
             EXEC GetCategoryProducts :category_id
@@ -40,6 +36,39 @@ def render_category(category_id, category_name):
 
     # Replace placeholders and return the final HTML
     return template.replace("{{category}}", category_name).replace("{{rows}}", rows)
+
+@app.route('/')
+def home():
+    return render_template("index.html")
+
+@app.route('/search')
+def search():
+
+    search = request.args.get('searchinput')
+
+    with Session() as session:
+        result = session.execute(text("""
+            SELECT top 100
+                image,
+                product_name,
+                FORMAT(price, '0') AS price,
+                website_url
+            FROM product
+            WHERE LOWER(product_name) LIKE LOWER(:search)
+        """), {"search": f"%{search}%"}).fetchall()
+
+        # Generate HTML rows for products
+        rows = "".join(f"""
+        <div class="product-box">
+            <img src="{row.image}" alt="Image coming soon" onerror="this.onerror=null; this.src='static/image/missing_image.png';">
+            <h3>{row.product_name}</h3>
+            <p>{row.price} SEK</p>
+            <button class="buybutton" onclick="window.location.href='{row.website_url}';">!BUY NOW!</button>
+        </div>
+        """ for row in result)
+
+    return render_template("search.html", rows=rows)
+
 
 @app.route('/electronics')
 def electronics():
