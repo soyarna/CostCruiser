@@ -1,4 +1,4 @@
-from flask import Flask, render_template, jsonify, render_template_string
+from flask import Flask, render_template, request, redirect, url_for
 from sqlalchemy.orm import sessionmaker
 import pyodbc
 from sqlalchemy import create_engine, URL, text
@@ -65,6 +65,22 @@ def home_and_kitchen():
 def login():
     return render_template("login.html")
 
-@app.route('/register')
+@app.route('/register', methods=['GET', 'POST'])
 def register():
+    if request.method == 'POST':
+        email = request.form.get('email')
+        password = request.form.get('password')
+
+        try:
+            with Session() as session:
+                session.execute(text("""
+                    INSERT INTO [User] (email, password)
+                    VALUES (:email, :password)
+                """), {"email": email, "password": password})
+                session.commit()
+            return redirect(url_for('login'))
+        
+        except Exception as e:
+            return f"Error: {e}"
+        
     return render_template("register.html")
