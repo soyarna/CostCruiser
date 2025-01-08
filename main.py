@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, jsonify
 from sqlalchemy.orm import sessionmaker
 import pyodbc
 from sqlalchemy import create_engine, URL, text
@@ -68,6 +68,34 @@ def search():
         """ for row in result)
 
     return render_template("search.html", rows=rows)
+
+@app.route('/product/<product_id>')
+def productoverview(product_id):
+    with Session() as session:
+        result = session.execute(text("""
+            SELECT  
+                product_id,
+                product_name,
+                image,
+                website_url,
+                FORMAT(price, '0') AS price,
+                discount_price,
+                ratings,
+                no_ratings
+            FROM [costcruiser].[dbo].[Product]
+            WHERE product_id = :product_id
+        """), {"product_id": product_id}).fetchall()
+
+        rows = "".join(f"""
+        <div class="product-box">
+            <img src="{row.image}" alt="Image coming soon" onerror="this.onerror=null; this.src='static/image/missing_image.png';">
+            <h3>{row.product_name}</h3>
+            <p>{row.price} SEK</p>
+            <button class="buybutton" onclick="window.location.href='{row.website_url}';">!BUY NOW!</button>
+        </div>
+        """ for row in result)
+
+        return render_template("product.html", rows=rows)
 
 
 @app.route('/electronics')

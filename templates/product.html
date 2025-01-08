@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="shortcut icon" type="image/x-icon" href="/static/image/2.ico" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CostCruiser</title>
+    <link rel="stylesheet" type="text/css" href="/static/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+    <body class="border">
+        <div class="lower_border_category"></div>
+        <div class="header">
+            <a href="/">
+            <img src="/static/image/4update.png" alt="CostCruiser">
+            </a>
+        </div>
+    <button class="homebutton" onclick="window.location.href='/';">Back to Homepage</button>
+    <form class="search-container" action="/search" method="get">
+        <input type="text" class="search-input" name="searchinput" placeholder="Search for products..." required>
+        <button type="submit" class="search-button">Search</button>
+    </form>
+    <div class="container">
+        {{ rows | safe }}
+    </div>
+    <div class="social-media-icons-category">
+        <a href="https://www.linkedin.com/" target="_blank" class="social-icon">
+            <i class="fa fa-linkedin"></i>
+        </a>
+        <a href="https://twitter.com/" target="_blank" class="social-icon">
+            <i class="fa fa-twitter"></i>
+        </a>
+        <a href="https://www.facebook.com/" target="_blank" class="social-icon">
+            <i class="fa fa-facebook"></i>
+        </a>
+        </div>
+        <div class="klarna-icon-category">
+            <a href="https://www.klarna.com/se/villkor/" target="_blank">
+                <img src="static/image/Klarna.png" alt="Klarna">
+            </a>
+        </div>
+</body>
+</html>
