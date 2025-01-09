@@ -13,6 +13,7 @@ Session = sessionmaker(bind=conn)
 
 app = Flask(__name__)
 app.secret_key = 'very_secret_wow'
+loggedin = ""
 
 def render_category(category_id, category_name):    
     with Session() as session:
@@ -40,7 +41,12 @@ def render_category(category_id, category_name):
 
 @app.route('/')
 def home():
-    return render_template("index.html")
+    if loggedin != "":
+        print(f"Hello {loggedin}!")
+        return render_template("index_2.html")
+    else:
+        print("False")
+        return render_template("index.html")
 
 @app.route('/search')
 def search():
@@ -93,6 +99,7 @@ def home_and_kitchen():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+    global loggedin
     if request.method == 'POST':
         email = request.form.get('email')
         password = request.form.get('password')
@@ -102,7 +109,7 @@ def login():
                                       {"email": email}).fetchone()
 
             if user and user.password == password:
-                session['user_id'] = user.user_id
+                loggedin = user.email
                 flash('Login successful!', 'success')
                 return redirect(url_for('login'))
             else:
