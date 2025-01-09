@@ -423,7 +423,7 @@ body{
     color: green;
 }
 
-.error_message{
+.error-message{
     text-align: center;
     font-size: x-large;
     font-weight: bolder;
