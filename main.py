@@ -49,6 +49,7 @@ def search():
     with Session() as session:
         result = session.execute(text("""
             SELECT top 100
+                product_id,
                 image,
                 product_name,
                 FORMAT(price, '0') AS price,
@@ -59,7 +60,7 @@ def search():
 
         # Generate HTML rows for products
         rows = "".join(f"""
-        <div class="product-box">
+        <div class="product-box" onclick="window.location.href='/product/{row.product_id}';">
             <img src="{row.image}" alt="Image coming soon" onerror="this.onerror=null; this.src='static/image/missing_image.png';">
             <h3>{row.product_name}</h3>
             <p>{row.price} SEK</p>
@@ -79,23 +80,34 @@ def productoverview(product_id):
                 image,
                 website_url,
                 FORMAT(price, '0') AS price,
-                discount_price,
+                FORMAT(discount_price, '0') AS discount_price,
                 ratings,
-                no_ratings
-            FROM [costcruiser].[dbo].[Product]
+                no_ratings,
+                product_description,
+                store_name,
+                category_name
+            FROM Product p
+            JOIN Category c ON c.category_id = p.category_id
+            JOIN Store s ON s.store_id = p.store_id
             WHERE product_id = :product_id
-        """), {"product_id": product_id}).fetchall()
+        """), {"product_id": product_id}).fetchone()
 
-        rows = "".join(f"""
-        <div class="product-box">
-            <img src="{row.image}" alt="Image coming soon" onerror="this.onerror=null; this.src='static/image/missing_image.png';">
-            <h3>{row.product_name}</h3>
-            <p>{row.price} SEK</p>
-            <button class="buybutton" onclick="window.location.href='{row.website_url}';">!BUY NOW!</button>
-        </div>
-        """ for row in result)
+        product = {
+            "id": result.product_id,
+            "name": result.product_name,
+            "image": result.image,
+            "website_url": result.website_url,
+            "price": result.price,
+            "discount_price": result.discount_price,
+            "ratings": result.ratings,
+            "no_ratings": result.no_ratings,
+            "description": result.product_description,
+            "store_name": result.store_name,
+            "category_name": result.category_name
+        }
 
-        return render_template("product.html", rows=rows)
+    return render_template("product.html", product=product)
+
 
 
 @app.route('/electronics')

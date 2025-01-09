@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
     <body class="border">
-        <div class="lower_border_category"></div>
         <div class="header">
             <a href="/">
             <img src="/static/image/4update.png" alt="CostCruiser">
@@ -20,24 +19,42 @@
         <input type="text" class="search-input" name="searchinput" placeholder="Search for products..." required>
         <button type="submit" class="search-button">Search</button>
     </form>
-    <div class="container">
-        {{ rows | safe }}
+    <div class="product-container">
+        <div class="product-image">
+            <img src="{{ product.image }}" alt="{{ product.name }}" onerror="this.onerror=null; this.src='/static/image/missing_image.png';">
+        </div>
+        <div class="product-details">
+            <h1>{{ product.name }}</h1>
+            <p class="category">Category: {{ product.category_name }}</p>
+            <p class="store">Store: {{ product.store_name }}</p>
+            <p class="description">{{ product.description }}</p>
+            <div class="pricing">
+                <span class="price">{{ product.price }} SEK</span>
+                {% if product.discount_price %}
+                    <span class="discount-price">{{ product.discount_price }} SEK</span>
+                {% endif %}
+            </div>
+            <p class="ratings">Ratings: {{ product.ratings }} ({{ product.no_ratings }} reviews)</p>
+            <button class="buy-button" onclick="window.location.href='{{ product.website_url }}';">Buy Now</button>
+        </div>
     </div>
-    <div class="social-media-icons-category">
-        <a href="https://www.linkedin.com/" target="_blank" class="social-icon">
-            <i class="fa fa-linkedin"></i>
-        </a>
-        <a href="https://twitter.com/" target="_blank" class="social-icon">
-            <i class="fa fa-twitter"></i>
-        </a>
-        <a href="https://www.facebook.com/" target="_blank" class="social-icon">
-            <i class="fa fa-facebook"></i>
-        </a>
-        </div>
-        <div class="klarna-icon-category">
-            <a href="https://www.klarna.com/se/villkor/" target="_blank">
-                <img src="static/image/Klarna.png" alt="Klarna">
+    <div class="lower_border_category">
+        <div class="social-media-icons-category">
+            <a href="https://www.linkedin.com/" target="_blank" class="social-icon">
+                <i class="fa fa-linkedin"></i>
             </a>
+            <a href="https://twitter.com/" target="_blank" class="social-icon">
+                <i class="fa fa-twitter"></i>
+            </a>
+            <a href="https://www.facebook.com/" target="_blank" class="social-icon">
+                <i class="fa fa-facebook"></i>
+            </a>
+            </div>
+            <div class="klarna-icon-category">
+                <a href="https://www.klarna.com/se/villkor/" target="_blank">
+                    <img src="static/image/Klarna.png" alt="Klarna">
+                </a>
         </div>
+    </div>
 </body>
 </html>
