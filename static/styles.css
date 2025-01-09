@@ -407,3 +407,10 @@ body{
     margin-bottom: 33%;
     margin-left: 20%;
 }
+
+.error-message{
+    text-align: center;
+    color: red;
+    font-size: x-large;
+    font-weight: bolder;
+}

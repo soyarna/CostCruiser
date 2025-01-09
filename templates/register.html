@@ -17,7 +17,13 @@
 </div>
 <button class="homebutton" onclick="window.location.href='/';">Back to Shore</button>
 <div class="blue_box">Register</div>
+
 <form action="/register" method="POST" class="register-form">
+    {% if error %}
+        <div class="error-message">
+            {{ error }}
+        </div>
+    {% endif %}
     <div class="email_bar">
         <input type="email" name="email" placeholder="Email" required>
     </div>

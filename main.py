@@ -94,22 +94,35 @@ def home_and_kitchen():
 def login():
     return render_template("login.html")
 
+
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     if request.method == 'POST':
         email = request.form.get('email')
         password = request.form.get('password')
+        confirm_password = request.form.get('confirm_password')
 
-        try:
-            with Session() as session:
-                session.execute(text("""
-                    INSERT INTO [User] (email, password)
-                    VALUES (:email, :password)
-                """), {"email": email, "password": password})
-                session.commit()
-            return redirect(url_for('login'))
-        
-        except Exception as e:
-            return f"Error: {e}"
-        
+        if confirm_password != password:
+            return render_template("register.html", error="Passwords do not match."),406
+        else:
+            try:
+                with Session() as session:
+
+                    existing_user = session.execute(text("""
+                        SELECT email FROM [User] WHERE email = :email
+                    """), {"email": email}).fetchone()
+
+                    if existing_user:
+                        return render_template("register.html", error="Email already exists."), 409
+                    
+                    session.execute(text("""
+                        INSERT INTO [User] (email, password)
+                        VALUES (:email, :password)
+                    """), {"email": email, "password": password})
+                    session.commit()
+                    return redirect(url_for('login'))
+
+            except Exception as e:
+                return f"Error: {e}"
+
     return render_template("register.html")
