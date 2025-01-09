@@ -16,17 +16,36 @@
     </a>
 </div>
 <button class="homebutton" onclick="window.location.href='/';">Back to Shore</button>
-<div class="blue_box">Login</div>
-<div class="email_bar">
-    <input type="text" placeholder="Email">
+
+
+<form action="{{ url_for('login') }}" method="POST" id="loginForm">
+    <div class="blue_box">Login</div>
+<div class="error_message">
+{% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        {% for category, message in messages %}
+            <p class="{{ category }}">{{ message }}</p>
+        {% endfor %}
+    {% endif %}
+{% endwith %}
 </div>
-<div class="password_bar">
-    <input type="password" placeholder="Password">
-</div>
-<div class="buttons_container">
-    <button class="login_button2">Login</button>
-    <button class="register_button" onclick="window.location.href='/register';">Register</button>
-</div>
+    <div class="email_bar">
+        <input type="email" name="email" placeholder="Enter your email" required>
+    </div>
+
+
+    <div class="password_bar">
+        <input type="password" name="password" placeholder="Enter your password" required>
+    </div>
+
+
+    <div class="buttons_container">
+        <button type="submit" class="login_button2">Login</button>
+        <button class="register_button" onclick="window.location.href='/register';">Register</button>
+    </div>
+</form>
+
+
 <div class="social-media-icons">
     <a href="https://www.linkedin.com/" target="_blank" class="social-icon">
         <i class="fa fa-linkedin"></i>
@@ -37,11 +56,14 @@
     <a href="https://www.facebook.com/" target="_blank" class="social-icon">
         <i class="fa fa-facebook"></i>
     </a>
-    </div>
-    <div class="klarna-icon">
-        <a href="https://www.klarna.com/se/villkor/" target="_blank">
-            <img src="static/image/Klarna.png" alt="Klarna">
-        </a>
-    </div>
+</div>
+
+
+<div class="klarna-icon">
+    <a href="https://www.klarna.com/se/villkor/" target="_blank">
+        <img src="static/image/Klarna.png" alt="Klarna">
+    </a>
+</div>
+
 </body>
 </html>
