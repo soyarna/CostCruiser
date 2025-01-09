@@ -2,6 +2,7 @@ body{
     margin: 0;
     padding: 0;
     position: relative;
+    overflow: hidden;
 }
 
 .border {
@@ -408,9 +409,17 @@ body{
     margin-left: 20%;
 }
 
-.error-message{
+.flashes {
+    list-style-type: none;
+    padding: 10px;
+}
+
+.success {
+    color: green;
+}
+
+.error_message{
     text-align: center;
-    color: red;
     font-size: x-large;
     font-weight: bolder;
 }

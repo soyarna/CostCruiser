@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, session, flash
 from sqlalchemy.orm import sessionmaker
 import pyodbc
 from sqlalchemy import create_engine, URL, text
@@ -12,6 +12,7 @@ conn = create_engine(url)
 Session = sessionmaker(bind=conn)
 
 app = Flask(__name__)
+app.secret_key = 'very_secret_wow'
 
 def render_category(category_id, category_name):    
     with Session() as session:
@@ -90,9 +91,24 @@ def fitness_accessories():
 def home_and_kitchen():
     return render_category(category_id=4, category_name="Home & Kitchen")
 
-@app.route('/login')
+@app.route('/login', methods=['GET', 'POST'])
 def login():
-    return render_template("login.html")
+    if request.method == 'POST':
+        email = request.form.get('email')
+        password = request.form.get('password')
+
+        with Session() as session_db:
+            user = session_db.execute(text("SELECT * FROM [User] WHERE email = :email"),
+                                      {"email": email}).fetchone()
+
+            if user and user.password == password:
+                session['user_id'] = user.user_id
+                flash('Login successful!', 'success')
+                return redirect(url_for('login'))
+            else:
+                flash('Invalid credentials. Please try again.', 'error')
+
+    return render_template('login.html')
 
 
 @app.route('/register', methods=['GET', 'POST'])
