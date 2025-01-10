@@ -71,7 +71,7 @@ def search():
             <img src="{row.image}" alt="Image coming soon" onerror="this.onerror=null; this.src='static/image/missing_image.png';">
             <h3>{row.product_name}</h3>
             <p>{row.price} SEK</p>
-            <button class="buybutton" onclick="window.location.href='{row.website_url}';">!BUY NOW!</button>
+            <button class="buybutton" onclick="window.location.href='{row.website_url}';">View product</button>
         </div>
         """ for row in result)
 
