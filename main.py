@@ -150,3 +150,10 @@ def register():
                 return f"Error: {e}"
 
     return render_template("register.html")
+
+@app.route('/logout')
+def logout():
+    global loggedin
+    loggedin = ""
+    print('You have been logged out')
+    return redirect(url_for('home'))

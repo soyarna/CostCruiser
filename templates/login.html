@@ -20,7 +20,7 @@
 
 <form action="{{ url_for('login') }}" method="POST" id="loginForm">
     <div class="blue_box">Login</div>
-<div class="error_message">
+<div class="error-message">
 {% with messages = get_flashed_messages(with_categories=true) %}
     {% if messages %}
         {% for category, message in messages %}
