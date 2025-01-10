@@ -2,6 +2,8 @@ from flask import Flask, render_template, request, redirect, url_for, jsonify, s
 from sqlalchemy.orm import sessionmaker
 import pyodbc
 from sqlalchemy import create_engine, URL, text
+from query import searchquerybody
+from query import searchquerybody
 
 url = URL.create(drivername="mssql+pyodbc",
                  host="localhost",
@@ -52,25 +54,22 @@ def home():
 def search():
 
     search = request.args.get('searchinput')
+    WHERE = request.args.get('WHEREinput', '')
+    ORDERBY = request.args.get('ORDERBYinput', 'price ASC')
+    LIMIT = request.args.get('LIMITinput', '50')
+
 
     with Session() as session:
-        result = session.execute(text("""
-            SELECT top 100
-                product_id,
-                image,
-                product_name,
-                FORMAT(price, '0') AS price,
-                website_url
-            FROM product
-            WHERE LOWER(product_name) LIKE LOWER(:search)
-        """), {"search": f"%{search}%"}).fetchall()
-
-        # Generate HTML rows for products
+        # put every varible in the searchquerybody
+        result = searchquerybody(session, search, WHERE, ORDERBY, LIMIT)
+            
+        # make product-box for every product
         rows = "".join(f"""
         <div class="product-box" onclick="window.location.href='/product/{row.product_id}';">
             <img src="{row.image}" alt="Image coming soon" onerror="this.onerror=null; this.src='static/image/missing_image.png';">
             <h3>{row.product_name}</h3>
-            <p>{row.price} SEK</p>
+            <p>{row.price}:- {row.discount_price}:-</p>
+            <h4>Rating:{row.ratings} {row.no_ratings} {row.category_name} {row.store_name}</h4>
             <button class="buybutton" onclick="window.location.href='{row.website_url}';">View product</button>
         </div>
         """ for row in result)
@@ -127,7 +126,7 @@ def garden_and_outdoors():
 
 @app.route('/dog_supplies')
 def dog_supplies():
-    return render_category(category_id=5, category_name="Dogs Supplies")
+    return render_category(category_id=5, category_name="Dog Supplies")
 
 @app.route('/fitness_accessories')
 def fitness_accessories():

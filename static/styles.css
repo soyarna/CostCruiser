@@ -137,6 +137,11 @@ body {
 
 .cat-h1 {
     text-align: center;
+    font-family: 'ResotELavender', sans-serif;
+    text-shadow: 1px 12px 7px rgba(0, 0, 0, 0.3);
+    color: #4A90E2;
+    font-weight: 300;
+
 }
 
 .fa {
@@ -521,9 +526,20 @@ body {
     margin-right: 10px;
 }
 
-.product-details .discount-price{
+
+
+/* Price for products without a discount (if statement) */
+
+.product-details .pricing{ 
     font-size: 18px;
     font-weight: bold;
+    color: #000000;
+    margin-right: 10px;
+}
+
+.product-details .discount-price{
+    font-size: 30px;
+    font-weight: bolder;
     color: #e74c3c;
     margin-bottom: 10px;
 }
