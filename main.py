@@ -114,6 +114,7 @@ def login():
                 return redirect(url_for('login'))
             else:
                 flash('Invalid credentials. Please try again.', 'error')
+                return render_template("login.html"), 401
 
     return render_template('login.html')
 
