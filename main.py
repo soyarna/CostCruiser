@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, jsonify
+from flask import Flask, render_template, request, redirect, url_for, jsonify, session, flash
 from sqlalchemy.orm import sessionmaker
 import pyodbc
 from sqlalchemy import create_engine, URL, text
@@ -12,6 +12,8 @@ conn = create_engine(url)
 Session = sessionmaker(bind=conn)
 
 app = Flask(__name__)
+app.secret_key = 'very_secret_wow'
+loggedin = ""
 
 def render_category(category_id, category_name):    
     with Session() as session:
@@ -39,7 +41,12 @@ def render_category(category_id, category_name):
 
 @app.route('/')
 def home():
-    return render_template("index.html")
+    if loggedin != "":
+        print(f"Hello {loggedin}!")
+        return render_template("index_2.html")
+    else:
+        print("False")
+        return render_template("index.html")
 
 @app.route('/search')
 def search():
@@ -130,26 +137,64 @@ def fitness_accessories():
 def home_and_kitchen():
     return render_category(category_id=4, category_name="Home & Kitchen")
 
-@app.route('/login')
+@app.route('/login', methods=['GET', 'POST'])
 def login():
-    return render_template("login.html")
-
-@app.route('/register', methods=['GET', 'POST'])
-def register():
+    global loggedin
     if request.method == 'POST':
         email = request.form.get('email')
         password = request.form.get('password')
 
-        try:
-            with Session() as session:
-                session.execute(text("""
-                    INSERT INTO [User] (email, password)
-                    VALUES (:email, :password)
-                """), {"email": email, "password": password})
-                session.commit()
-            return redirect(url_for('login'))
-        
-        except Exception as e:
-            return f"Error: {e}"
-        
+        with Session() as session_db:
+            user = session_db.execute(text("SELECT * FROM [User] WHERE email = :email"),
+                                      {"email": email}).fetchone()
+
+            if user and user.password == password:
+                loggedin = user.username
+                flash('Login successful!', 'success')
+                return redirect(url_for('login'))
+            else:
+                flash('Invalid credentials. Please try again.', 'error')
+                return render_template("login.html"), 401
+
+    return render_template('login.html')
+
+
+@app.route('/register', methods=['GET', 'POST'])
+def register():
+    if request.method == 'POST':
+        username = request.form.get('username')
+        email = request.form.get('email')
+        password = request.form.get('password')
+        confirm_password = request.form.get('confirm_password')
+
+        if confirm_password != password:
+            return render_template("register.html", error="Passwords do not match."),406
+        else:
+            try:
+                with Session() as session:
+
+                    existing_user = session.execute(text("""
+                        SELECT email FROM [User] WHERE email = :email
+                    """), {"email": email}).fetchone()
+
+                    if existing_user:
+                        return render_template("register.html", error="Email already exists."), 409
+                    
+                    session.execute(text("""
+                        INSERT INTO [User] (username, email, password)
+                        VALUES (:username, :email, :password)
+                    """), {"username": username, "email": email, "password": password})
+                    session.commit()
+                    return redirect(url_for('login'))
+
+            except Exception as e:
+                return f"Error: {e}"
+
     return render_template("register.html")
+
+@app.route('/logout')
+def logout():
+    global loggedin
+    loggedin = ""
+    print('You have been logged out')
+    return redirect(url_for('home'))
