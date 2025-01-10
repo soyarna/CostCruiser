@@ -2,12 +2,17 @@ body{
     margin: 0;
     padding: 0;
     position: relative;
-    overflow: hidden;
 }
 
 .border {
     border-top: 60px solid #073858;
+    overflow: hidden;
 }
+
+.borders {
+    border-top: 60px solid #073858;
+}
+
 
 .lower_border{
     position: fixed;
