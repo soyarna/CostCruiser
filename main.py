@@ -87,7 +87,7 @@ def garden_and_outdoors():
 
 @app.route('/dog_supplies')
 def dog_supplies():
-    return render_category(category_id=5, category_name="Dogs Supplies")
+    return render_category(category_id=5, category_name="Dog Supplies")
 
 @app.route('/fitness_accessories')
 def fitness_accessories():
