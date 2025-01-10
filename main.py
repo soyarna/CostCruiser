@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, session, flash
+from flask import Flask, render_template, request, redirect, url_for, jsonify, session, flash
 from sqlalchemy.orm import sessionmaker
 import pyodbc
 from sqlalchemy import create_engine, URL, text
@@ -65,16 +65,55 @@ def search():
             
         # make product-box for every product
         rows = "".join(f"""
-        <div class="product-box">
+        <div class="product-box" onclick="window.location.href='/product/{row.product_id}';">
             <img src="{row.image}" alt="Image coming soon" onerror="this.onerror=null; this.src='static/image/missing_image.png';">
             <h3>{row.product_name}</h3>
             <p>{row.price}:- {row.discount_price}:-</p>
             <h4>Rating:{row.ratings} {row.no_ratings} {row.category_name} {row.store_name}</h4>
-            <button class="buybutton" onclick="window.location.href='{row.website_url}';">!BUY NOW!</button>
+            <button class="buybutton" onclick="window.location.href='{row.website_url}';">View product</button>
         </div>
         """ for row in result)
 
     return render_template("search.html", rows=rows)
+
+@app.route('/product/<product_id>')
+def productoverview(product_id):
+    with Session() as session:
+        result = session.execute(text("""
+            SELECT  
+                product_id,
+                product_name,
+                image,
+                website_url,
+                FORMAT(price, '0') AS price,
+                FORMAT(discount_price, '0') AS discount_price,
+                ratings,
+                no_ratings,
+                product_description,
+                store_name,
+                category_name
+            FROM Product p
+            JOIN Category c ON c.category_id = p.category_id
+            JOIN Store s ON s.store_id = p.store_id
+            WHERE product_id = :product_id
+        """), {"product_id": product_id}).fetchone()
+
+        product = {
+            "id": result.product_id,
+            "name": result.product_name,
+            "image": result.image,
+            "website_url": result.website_url,
+            "price": result.price,
+            "discount_price": result.discount_price,
+            "ratings": result.ratings,
+            "no_ratings": result.no_ratings,
+            "description": result.product_description,
+            "store_name": result.store_name,
+            "category_name": result.category_name
+        }
+
+    return render_template("product.html", product=product)
+
 
 
 @app.route('/electronics')
