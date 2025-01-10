@@ -514,6 +514,15 @@ body {
     margin-right: 10px;
 }
 
+/* Price for products without a discount (if statement) */
+
+.product-details .pricing{ 
+    font-size: 18px;
+    font-weight: bold;
+    color: #000000;
+    margin-right: 10px;
+}
+
 .product-details .discount-price{
     font-size: 18px;
     font-weight: bold;
