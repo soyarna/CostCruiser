@@ -109,7 +109,7 @@ def login():
                                       {"email": email}).fetchone()
 
             if user and user.password == password:
-                loggedin = user.email
+                loggedin = user.username
                 flash('Login successful!', 'success')
                 return redirect(url_for('login'))
             else:
