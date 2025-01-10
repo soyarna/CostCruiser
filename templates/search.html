@@ -14,9 +14,54 @@
             <img src="static/image/4update.png" alt="CostCruiser">
         </div>
     <button class="homebutton" onclick="window.location.href='/';">Back to Homepage</button>
-    <form class="search-container" action="/search" method="get">
-        <input type="text" class="search-input" name="searchinput" placeholder="Search for products..." required>
-        <button type="submit" class="search-button">Search</button>
+    <form action="/search" method="get">
+        <!-- Search Bar -->
+        <div class="search-container">
+            <input type="text" class="search-input" name="searchinput" value="{{ request.args.get('searchinput', '') }}" placeholder="Search for products..." required>
+            <button type="submit" class="search-button">Search</button>
+        </div>
+        <div class="container">
+            <!-- Sorting Options -->
+            <div>
+                <label>Sort by:</label>
+                <select id="ORDERBYinput" name="ORDERBY">
+                    <option value="" selected disabled hidden>Price: low to high</option>
+                    <option value="price ASC">Price: low to high</option>
+                    <option value="price DESC">Price: high to low</option>
+                    <option value="discount_price DESC">Best discount %</option>
+                    <option value="ratings DESC">Rating: high to low</option>
+                    <option value="product_name ASC">Product name: A-Z</option>
+                </select>
+            </div>
+
+            <!--Limit Options--> 
+            <div>
+                <label for="limit">Results per page:</label>
+                <select id="LIMITinput" name="LIMITinput">
+                    <option value="50">50</option>
+                    <option value="100">100</option>
+                    <option value="1000">1000</option>
+                    <option value="5000">5000</option>
+                </select>
+            </div>
+
+            <!-- category filter -->
+            <div>
+                <label for="WHEREinput">Category:</label>
+                <select id="WHEREinput" name="WHEREinput">
+                    <option value="" selected>All Categories</option>
+                    <option value=" AND category_name = 'electronics'">Electronics</option>
+                    <option value=" AND category_name = 'Fitness accessories'">Fitness accessories</option>
+                    <option value=" AND category_name = 'Garden and outdoors'">Garden and outdoors</option>
+                    <option value=" AND category_name = 'Home and kitchen'">Home and kitchen</option>
+                    <option value=" AND category_name = 'Dog supplies'">Dog supplies</option>
+                </select>
+            </div>
+            <!-- Submit Button -->
+            <div>
+                <button type="submit" class="search-button">Apply</button>
+            </div>
+        </div>
     </form>
     <div class="container">
         {{ rows | safe }}
