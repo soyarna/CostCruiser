@@ -8,7 +8,7 @@
     <link rel="stylesheet" type="text/css" href="/static/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
-    <body class="border">
+    <body class="borders">
         <div class="header">
             <a href="/">
             <img src="/static/image/4update.png" alt="CostCruiser">
@@ -29,15 +29,19 @@
             <p class="store">Store: {{ product.store_name }}</p>
             <p class="description">{{ product.description }}</p>
             <div class="pricing">
-                <span class="price">{{ product.price }} SEK</span>
-                {% if product.discount_price %}
+             <span class="price">
+            {% if product.discount_price %}
+                <span class="original-price">{{ product.price }} SEK</span>
+                {% else %}
+                {{ product.price }} SEK
+                {% endif %}
+                </span>
+            {% if product.discount_price %}
                     <span class="discount-price">{{ product.discount_price }} SEK</span>
                 {% endif %}
             </div>
-            <p class="ratings">Ratings: {{ product.ratings }} ({{ product.no_ratings }} reviews)</p>
-            <button class="buy-button" onclick="window.location.href='{{ product.website_url }}';">Buy Now</button>
+            <button class="buybutton" onclick="window.location.href='{{ product.website_url }}';">BUY NOW</button>
         </div>
-    </div>
     <div class="lower_border_category">
         <div class="social-media-icons-category">
             <a href="https://www.linkedin.com/" target="_blank" class="social-icon">

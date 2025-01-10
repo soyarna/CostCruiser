@@ -137,6 +137,11 @@ body {
 
 .cat-h1 {
     text-align: center;
+    font-family: 'ResotELavender', sans-serif;
+    text-shadow: 1px 12px 7px rgba(0, 0, 0, 0.3);
+    color: #4A90E2;
+    font-weight: 300;
+
 }
 
 .fa {
@@ -271,22 +276,34 @@ body {
     align-items: center;
     width: 250px;
     padding: 6px;
-    border: 1px solid #145b7f;
-    background-color: #145b7f;
+    border: 1px solid ;
+    background-color:#265d83;
     border-radius: 8px;
  }
+
  .product-box img {
     width: 90%;
-    height: 300px;
+    height: 250px;
     border-radius: 8px;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
  }
+
  .product-box h3 {
-    margin: 12px 0;
-    font-size: 18px;
+    margin: 20px 0;
+    width: 215px;
+    font-family:Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    max-height: 80px;
+    color:white;
   }
- .product-box p {
+ 
+  .product-box p {
     color: #f4854f;
     font-size: 25px;
+    font-family:Arial, Helvetica, sans-serif;
+    max-height: -5px;
     font-weight: 600;
  }
 
@@ -477,6 +494,7 @@ body {
     max-height: 100%;
 }
 
+
 .product-details{
     font-size: 14px;
     position: fixed;
@@ -494,39 +512,68 @@ body {
 
 .product-details.category{
     font-size: 16px;
-    font-weight: bold;
+    font-weight: bolder;
     color: #000000;
     text-transform: uppercase;
     margin-bottom: 10px;
 }
 
-.product-details.price{
+.product-details .original-price{
     font-size: 18px;
     font-weight: bold;
+    color: #000000;
+    text-decoration: line-through;
+    margin-right: 10px;
+}
+
+
+
+/* Price for products without a discount (if statement) */
+
+.product-details .pricing{ 
+    font-size: 18px;
+    font-weight: bold;
+    color: #000000;
+    margin-right: 10px;
+}
+
+.product-details .discount-price{
+    font-size: 30px;
+    font-weight: bolder;
     color: #e74c3c;
     margin-bottom: 10px;
 }
 
-.product-details.store{
+.product-details .buybutton{
+    font-size: 18px;
+    width: 160px;
+    text-align: center; 
+    line-height: 25px;  
+    border: #f4854f solid 1px;
+    height: auto;  
+    padding: 10px 20px; 
+    color: white;
+    background-color: #3676a0;
+    display: inline-block;
+}
+
+
+.product-details .store{
     font-size: 14px;
+    font-weight: bolder;
     color: #3498db;
     font-family: 'Copperplate', sans-serif;
     margin-bottom: 10px;
 }
 
-.product-details.description{
+.product-details .description{
     font-size: 13px;
     color: #555555;
     margin-bottom: 20px;
     line-height: 1.8;
 }
 
-.product-details.pricing{
-    font-size: 14px;
-    color: #ae2727;
-    font-weight: bold;
-    margin-top: 15px;
-}
+
 
     
 
