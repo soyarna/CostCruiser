@@ -2,6 +2,8 @@ from flask import Flask, render_template, request, redirect, url_for, session, f
 from sqlalchemy.orm import sessionmaker
 import pyodbc
 from sqlalchemy import create_engine, URL, text
+from query import searchquerybody
+from query import searchquerybody
 
 url = URL.create(drivername="mssql+pyodbc",
                  host="localhost",
@@ -52,24 +54,22 @@ def home():
 def search():
 
     search = request.args.get('searchinput')
+    WHERE = request.args.get('WHEREinput', '')
+    ORDERBY = request.args.get('ORDERBYinput', 'price ASC')
+    LIMIT = request.args.get('LIMITinput', '50')
+
 
     with Session() as session:
-        result = session.execute(text("""
-            SELECT top 100
-                image,
-                product_name,
-                FORMAT(price, '0') AS price,
-                website_url
-            FROM product
-            WHERE LOWER(product_name) LIKE LOWER(:search)
-        """), {"search": f"%{search}%"}).fetchall()
-
-        # Generate HTML rows for products
+        # put every varible in the searchquerybody
+        result = searchquerybody(session, search, WHERE, ORDERBY, LIMIT)
+            
+        # make product-box for every product
         rows = "".join(f"""
         <div class="product-box">
             <img src="{row.image}" alt="Image coming soon" onerror="this.onerror=null; this.src='static/image/missing_image.png';">
             <h3>{row.product_name}</h3>
-            <p>{row.price} SEK</p>
+            <p>{row.price}:- {row.discount_price}:-</p>
+            <h4>Rating:{row.ratings} {row.no_ratings} {row.category_name} {row.store_name}</h4>
             <button class="buybutton" onclick="window.location.href='{row.website_url}';">!BUY NOW!</button>
         </div>
         """ for row in result)
