@@ -19,7 +19,7 @@ body{
     left: 0;
     bottom: 0;
     width: 100%;
-    border-bottom: 120px solid #073858;
+    border-bottom: 100px solid #073858;
 }
 
 .lower_border_category{
@@ -168,7 +168,7 @@ body{
 
 .social-media-icons {
     position: fixed; 
-    bottom: 40px; 
+    bottom: 25px; 
     left: 50%; 
     transform: translateX(-50%); 
     display: flex;
@@ -192,7 +192,7 @@ body{
 
 .klarna-icon{
     position: fixed;
-    bottom: -25px;
+    bottom: -30px;
     right: 50px;
     transform: scale(0.4);
     width: 100px;
