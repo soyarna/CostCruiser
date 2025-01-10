@@ -22,8 +22,6 @@ def searchquerybody(session, search, WHERE, ORDERBY, LIMIT):
         ORDER BY {ORDERBY}
     """)
     
-    print(query)
-
     # Execute the query
     results = session.execute(query).fetchall()
     return results

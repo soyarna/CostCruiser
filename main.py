@@ -3,6 +3,7 @@ from sqlalchemy.orm import sessionmaker
 import pyodbc
 from sqlalchemy import create_engine, URL, text
 from query import searchquerybody
+from query import searchquerybody
 
 url = URL.create(drivername="mssql+pyodbc",
                  host="localhost",
@@ -59,6 +60,10 @@ def search():
 
 
     with Session() as session:
+        # put every varible in the searchquerybody
+        result = searchquerybody(session, search, WHERE, ORDERBY, LIMIT)
+            
+        # make product-box for every product
         # put every varible in the searchquerybody
         result = searchquerybody(session, search, WHERE, ORDERBY, LIMIT)
             
