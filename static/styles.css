@@ -499,3 +499,38 @@ body {
 .top-button:hover {
     background-color: #f4854f;
 }
+
+.content-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 20px;
+}
+
+.catborder {
+    width: 75%;
+    border-collapse: collapse;
+    margin-right: 20px;
+    border: 1px solid #ddd;
+}
+
+.catborder th,
+.catborder td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.gif-ad {
+    width: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.gif-ad img {
+    width: 100%;
+    max-width: 350px;
+    height: auto;
+}
