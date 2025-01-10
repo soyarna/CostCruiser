@@ -121,6 +121,7 @@ def login():
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     if request.method == 'POST':
+        username = request.form.get('username')
         email = request.form.get('email')
         password = request.form.get('password')
         confirm_password = request.form.get('confirm_password')
@@ -139,9 +140,9 @@ def register():
                         return render_template("register.html", error="Email already exists."), 409
                     
                     session.execute(text("""
-                        INSERT INTO [User] (email, password)
-                        VALUES (:email, :password)
-                    """), {"email": email, "password": password})
+                        INSERT INTO [User] (username, email, password)
+                        VALUES (:username, :email, :password)
+                    """), {"username": username, "email": email, "password": password})
                     session.commit()
                     return redirect(url_for('login'))
 

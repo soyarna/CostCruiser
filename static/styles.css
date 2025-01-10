@@ -338,10 +338,22 @@ body{
     z-index: -1;
   }
 
+  .username_bar{
+    display: flex;
+    justify-content: center;
+    padding-top: 12%;
+  }
+
+  .username_bar input {
+    width: 300px;
+    padding: 3px;
+    font-size: 16px;
+}
+
   .email_bar{
     display: flex;
     justify-content: center;
-    padding-top: 14%;
+    padding-top: 14px;
   }
 
   .email_bar input {
@@ -396,6 +408,30 @@ body{
     text-align: center;
     position: fixed;
     margin-bottom:42%;
+}
+
+.email_bar_login{
+    display: flex;
+    justify-content: center;
+    padding-top: 14%;
+  }
+
+  .email_bar_login input {
+    width: 300px;
+    padding: 4px;
+    font-size: 16px;
+}
+
+.password_bar_login{
+    display: flex;
+    justify-content: center;
+    padding-top: 15px;
+  }
+
+.password_bar_login input {
+    width: 300px;
+    padding: 3px;
+    font-size: 16px;
 }
 
 .register_button{
