@@ -64,10 +64,6 @@ def search():
         result = searchquerybody(session, search, WHERE, ORDERBY, LIMIT)
             
         # make product-box for every product
-        # put every varible in the searchquerybody
-        result = searchquerybody(session, search, WHERE, ORDERBY, LIMIT)
-            
-        # make product-box for every product
         rows = "".join(f"""
         <div class="product-box">
             <img src="{row.image}" alt="Image coming soon" onerror="this.onerror=null; this.src='static/image/missing_image.png';">

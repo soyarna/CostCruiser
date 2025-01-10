@@ -63,15 +63,6 @@
             </div>
         </div>
     </form>
-    <h3>Sort by:</h3>
-    <select onchange="window.location.href=this.value;">
-        <option value="" selected disabled hidden>Price: low to high</option>
-        <option class="values" name="ORDERBYinput">Price: low to high</option>
-        <option class="values" name="ORDERBYinput">Price: high to low</option>
-        <option class="values" name="ORDERBYinput">Best discount %</option>
-        <option class="values" name="ORDERBYinput" VALUE="rating ASC">Rating: high to low</option>
-        <option class="values" name="ORDERBYinput">Product name: A-Z</option>
-    </select>
     <div class="container">
         {{ rows | safe }}
     </div>
