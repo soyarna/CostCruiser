@@ -25,8 +25,8 @@
         <div class="container">
             <!-- Sorting Options -->
             <div>
-                <label>Sort by:</label>
-                <select id="ORDERBYinput" name="ORDERBY">
+                <label class="dropdown-product-label">Sort by:</label>
+                <select class ="dropdown-products" id="ORDERBYinput" name="ORDERBY">
                     <option value="" selected disabled hidden>Price: low to high</option>
                     <option value="price ASC">Price: low to high</option>
                     <option value="price DESC">Price: high to low</option>
@@ -38,8 +38,8 @@
 
             <!--Limit Options--> 
             <div>
-                <label for="limit">Results per page:</label>
-                <select id="LIMITinput" name="LIMITinput">
+                <label class="dropdown-product-label" for="limit">Results per page:</label>
+                <select class ="dropdown-products" id="LIMITinput" name="LIMITinput">
                     <option value="50">50</option>
                     <option value="100">100</option>
                     <option value="1000">1000</option>
@@ -49,8 +49,8 @@
 
             <!-- category filter -->
             <div>
-                <label for="WHEREinput">Category:</label>
-                <select id="WHEREinput" name="WHEREinput">
+                <label class="dropdown-product-label" for="WHEREinput">Category:</label>
+                <select class ="dropdown-products" id="WHEREinput" name="WHEREinput">
                     <option value="" selected>All Categories</option>
                     <option value=" AND category_name = 'electronics'">Electronics</option>
                     <option value=" AND category_name = 'Fitness accessories'">Fitness accessories</option>
@@ -60,9 +60,9 @@
                 </select>
             </div>
             <!-- Submit Button -->
-            <div>
-                <button type="submit" class="search-button">Apply</button>
-            </div>
+
+                <button type="submit" class="search-button-products">Apply</button>
+
         </div>
     </form>
     <div class="container">

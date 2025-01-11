@@ -65,12 +65,16 @@ def search():
             
         # make product-box for every product
         rows = "".join(f"""
-        <div class="product-box" onclick="window.location.href='/product/{row.product_id}';">
+        <div class="product-box">
             <img src="{row.image}" alt="Image coming soon" onerror="this.onerror=null; this.src='static/image/missing_image.png';">
             <h3>{row.product_name}</h3>
-            <p>{row.price}:- {row.discount_price}:-</p>
-            <h4>Rating:{row.ratings} {row.no_ratings} {row.category_name} {row.store_name}</h4>
-            <button class="buybutton" onclick="window.location.href='{row.website_url}';">View product</button>
+            <p>
+            <span class="price-2">{row.price}:-</span> 
+            <span class="discount-price-2">{row.discount_price}:-</span>
+            </p>
+            <h4>Rating:{row.ratings}</h4>
+            <h4>{row.store_name}</h4>
+            <button class="buybutton" onclick="window.location.href='/product/{row.product_id}';">View product</button>
         </div>
         """ for row in result)
 

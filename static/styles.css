@@ -118,12 +118,18 @@ body {
     height: 50px;
     width: 100%;
     color: #fff;
-    font-weight: 600;
+    font-weight: bolder;
+    font-size: medium;
     border: 1px solid #f4854f;
     background-color: #f4854f;
     padding: 9px 12px;
     border-radius: 8px;
 }
+
+.buybutton:hover{
+    background-color: #073858;
+}
+
 
 .loginbutton2 {
     background-color: #f4854f;
@@ -288,12 +294,36 @@ body {
  .product-box h3 {
     margin: 12px 0;
     font-size: 18px;
+    color: white;
+    text-overflow: ellipsis;
+    line-height: 16px;
+    max-height: 70px;
   }
- .product-box p {
-    color: #f4854f;
+
+  .product-box h4 {
+    color: white;
+    text-align: center;
+    margin-bottom: 6px;
+    margin-top: 2px;
+  }
+
+ .price-2{
+    color: white;
     font-size: 25px;
     font-weight: 600;
+    margin-bottom: -10px;
+    margin-top: -8px;
+    text-decoration: line-through;
  }
+
+ .discount-price-2{
+    color: red;
+    font-size: 25px;
+    font-weight: 600;
+    margin-bottom: -10px;
+    margin-top: -8px;
+ }
+
 
 .search-container {
     display: flex;
@@ -532,7 +562,8 @@ body {
     margin-bottom: 10px;
 }
 
-.product-details .buybutton{
+.product-details .buybutton-2{
+    border-radius: 10px;
     font-size: 18px;
     width: 160px;
     text-align: center; 
@@ -543,6 +574,9 @@ body {
     color: white;
     background-color: #3676a0;
     display: inline-block;
+}
+.buybutton-2:hover{
+    background-color: #f4854f;
 }
 
 
@@ -600,5 +634,38 @@ body {
 }
 
 .top-button:hover {
+    background-color: #f4854f;
+}
+
+.dropdown-products {
+    border-radius: 10px;
+    padding: 6px 10px;
+    border-width: 2px;
+    cursor: pointer;
+    font-size: medium;
+}
+
+.dropdown-product-label{
+    font-size: 23px;
+    font-weight: bold;                     
+}
+
+.search-button-products {
+    border-radius: 10px;
+    background-color: #145b7f;
+    color: white;
+    border: 2px;
+    border-color: #073858;
+    padding: 10px 12px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    top: -10px;
+}
+
+
+.search-button-products:hover {
     background-color: #f4854f;
 }
