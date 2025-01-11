@@ -12,6 +12,11 @@
     <div class="lower_border"></div>
     <div class="header">
         <img src="static/image/4update.png" alt="CostCruiser">
+        {% if loggedin %}
+            <div class="username-display">
+                User: <span class="username-text">{{ loggedin }}</span>
+            </div>
+        {% endif %}
     </div>
         <button class="loginbutton" onclick="window.location.href='/logout';">Logout</button>
     <div class="hero">
