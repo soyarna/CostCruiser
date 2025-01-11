@@ -235,17 +235,15 @@ body {
 
 
 .bordercat {
+    table-layout:fixed;
     text-align: center;
     border-radius: 5px;
-    margin-right: 5%;
     background-color: #145b7f;
     color: white;
     font-family: Georgia, serif;
     font-size: medium;
     font-weight: bolder;
-    width: 100px;
-    height: 200px;
-    padding: 20px;
+
 }
 
 .bordercatname {
@@ -255,16 +253,11 @@ body {
 
 .bordercatimg {
     border-radius: 5px;
-    margin-right: 5%;
-    width: 100px;
-    height: 100px;
-    text-align: center;
     color: #145b7f;
-    font-family: Georgia, serif;
-    font-size: medium;
-    font-weight: bolder;
-    object-fit: cover;
     border: 2px solid #145b7f;
+    object-fit: contain;
+    text-align: center;
+    overflow: hidden;
 }
 
 .container {
@@ -668,4 +661,9 @@ body {
 
 .search-button-products:hover {
     background-color: #f4854f;
+}
+
+.catborder{
+    table-layout: fixed;
+    width: 75%;
 }
