@@ -43,9 +43,10 @@ def render_category(category_id, category_name):
 
 @app.route('/')
 def home():
-    if loggedin != "":
+    global loggedin
+    if loggedin:
         print(f"Hello {loggedin}!")
-        return render_template("index_2.html")
+        return render_template("index_2.html", loggedin=loggedin)
     else:
         print("False")
         return render_template("index.html")

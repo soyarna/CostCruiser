@@ -23,23 +23,30 @@ body {
 }
 
 .lower_border_category {
-    position: fixed;
+    position: relative;
     left: 0;
     bottom: 0;
     width: 100%;
     height: 60px;
     background-color: #073858;
-    margin-top: auto; 
+    margin-top: auto;
+    z-index: 10;
 }
 
 .header {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
     text-align: center;
-    margin-top: -60px;
+    top: -60px;
+    position: relative;
 }
 
 .hero {
 
     text-align: center;
+    position:relative;
+    top: -60px;
 }
 
 .bon {
@@ -48,6 +55,8 @@ body {
     font-family: 'Franziska, Georgia, Cambria';
     font-size: 30px;
     margin-top: -3px;
+    position:relative;
+    top: -60px;
 }
 
 .bon2 {
@@ -56,6 +65,8 @@ body {
     font-family: 'Franziska, Georgia, Cambria';
     font-size: 20px;
     margin-top: -18px;
+    position:relative;
+    top: -60px;
 }
 
 .nav {
@@ -185,12 +196,14 @@ body {
 }
 
 .social-media-icons-category {
-    position: fixed;
-    bottom: 4px;
-    left: 50%;
-    transform: translateX(-50%);
     display: flex;
+    justify-content: center;
+    position: relative;
+    bottom: -5px;
+    transform: translateX(-50%);
+    left: 50%;
     gap: 15px;
+    z-index: 200;
 }
 
 .social-icon {
@@ -206,16 +219,16 @@ body {
     transform: scale(0.4);
     width: 100px;
     height: auto;
-
 }
 
 .klarna-icon-category {
-    position: fixed;
-    bottom: -48px;
-    right: 50px;
+    position: relative;
+    right: -90%;
     transform: scale(0.3);
     width: 100px;
     height: auto;
+    z-index: 200;
+    bottom: 95px;
 }
 
 .cat {
@@ -304,6 +317,8 @@ body {
     border-radius: 25px;
     border: 2px solid #073858;
     overflow: hidden;
+    position:relative;
+    top: -60px;
 }
 
 
@@ -345,7 +360,6 @@ body {
     width: 30%;
     height: 43%;
     left: 30%;
-    margin-top: 35px;
     display: block;
     position: fixed;
     text-align: center;
@@ -360,7 +374,7 @@ body {
 .username_bar {
     display: flex;
     justify-content: center;
-    padding-top: 12%;
+    padding-top: 9%;
 }
 
 .username_bar input {
@@ -432,7 +446,7 @@ body {
 .email_bar_login {
     display: flex;
     justify-content: center;
-    padding-top: 14%;
+    padding-top: 12%;
 }
 
 .email_bar_login input {
@@ -465,7 +479,7 @@ body {
     padding: 7px 15px;
     border: 1;
     position: fixed;
-    margin-bottom: 33%;
+    margin-bottom: 35%;
     margin-left: 20%;
 }
 
@@ -579,12 +593,15 @@ body {
     text-align: center;
     font-size: x-large;
     font-weight: bolder;
+    position: relative;
+    top: 120px;
+    color:rgb(255, 149, 111)
 }
 
 .top-button {
     position: fixed;
     bottom: 70px;
-    right: 30px;
+    right: 10px;
     z-index: 100;
     background-color: #073858;
     color: white;
@@ -597,8 +614,23 @@ body {
     justify-content: center;
     align-items: center;
     cursor: pointer;
+    opacity: 0.7;
 }
 
 .top-button:hover {
-    background-color: #f4854f;
+    background-color: #073858;
+    opacity: 1.0;
+}
+
+.username-display {
+    font-size: 18px;
+    top: 10%;
+    margin-left: 80%;
+    position:absolute;
+    top: 20px;
+    color: #f4854f;
+}
+
+.username-text {
+    color: white;
 }
