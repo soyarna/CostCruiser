@@ -18,7 +18,7 @@ def searchquerybody(session, search, WHERE, ORDERBY, LIMIT):
         FROM product p
         JOIN Category c ON c.category_id = p.category_id
         JOIN Store s ON s.store_id = p.store_id
-        WHERE LOWER(product_name) LIKE LOWER('%{search}%'){WHERE}
+        WHERE price > 0 AND discount_price > 0 AND LOWER(product_name) LIKE LOWER('%{search}%'){WHERE}
         ORDER BY {ORDERBY}
     """)
     
