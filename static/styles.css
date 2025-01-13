@@ -517,7 +517,7 @@ body {
 .catborder th,
 .catborder td {
     border: 1px solid #ddd;
-    padding: 8px;
+    padding: 12px;
     text-align: left;
 }
 
