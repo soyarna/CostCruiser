@@ -19,33 +19,49 @@
     </div>
     <button class="homebutton" onclick="window.location.href='/';">Back to Shore</button>
     <h1 class="cat-h1">{{category}}</h1>
-    <table class="catborder">
-        <tr class="cat">
-            <th>Store Name</th>
-            <th>Product Name</th>
-            <th>Price</th>
-            <th>Ratings</th>
-            <th>Image</th>
-        </tr>
-        {{rows}}
-    </table>
+    <div class="table-container">
+        <table class="catborder">
+            <tr class="cat">
+                <th>Store Name</th>
+                <th>Product Name</th>
+                <th>Price</th>
+                <th>Ratings</th>
+                <th>Image</th>
+            </tr>
+            {{rows}}
+        </table>
+
+        <div class="gif-container">
+            <a href="https://tenor.com/sv/view/ads-ads-ads-after-midnight-taylor-tomlinson-gif-12521077230697400642"
+                target="_blank">
+                <img src="static/image/ad1.gif" alt="Ad 1" class="gif-ad">
+            </a>
+            <a href="https://tenor.com/sv/view/let's-make-ads-cat-says-gif-14893149035664702504" target="_blank">
+                <img src="static/image/ad2.gif" alt="Ad 2" class="gif-ad">
+            </a>
+            <a href="https://tenor.com/sv/view/ad-world-advertisement-world-earth-planet-world-gif-17151392"
+                target="_blank">
+                <img src="static/image/ad3.gif" alt="Ad 3" class="gif-ad">
+            </a>
+        </div>
+    </div>
     <footer class="lower_border_category">
-    <div class="social-media-icons-category">
-        <a href="https://www.linkedin.com/" target="_blank" class="social-icon">
-            <i class="fa fa-linkedin"></i>
-        </a>
-        <a href="https://twitter.com/" target="_blank" class="social-icon">
-            <i class="fa fa-twitter"></i>
-        </a>
-        <a href="https://www.facebook.com/" target="_blank" class="social-icon">
-            <i class="fa fa-facebook"></i>
-        </a>
-    </div>
-    <div class="klarna-icon-category">
-        <a href="https://www.klarna.com/se/villkor/" target="_blank">
-            <img src="static/image/Klarna.png" alt="Klarna">
-        </a>
-    </div>
+        <div class="social-media-icons-category">
+            <a href="https://www.linkedin.com/" target="_blank" class="social-icon">
+                <i class="fa fa-linkedin"></i>
+            </a>
+            <a href="https://twitter.com/" target="_blank" class="social-icon">
+                <i class="fa fa-twitter"></i>
+            </a>
+            <a href="https://www.facebook.com/" target="_blank" class="social-icon">
+                <i class="fa fa-facebook"></i>
+            </a>
+        </div>
+        <div class="klarna-icon-category">
+            <a href="https://www.klarna.com/se/villkor/" target="_blank">
+                <img src="static/image/Klarna.png" alt="Klarna">
+            </a>
+        </div>
     </footer>
     <a href="#top" class="top-button">
         <i class="fa fa-arrow-up"></i>
