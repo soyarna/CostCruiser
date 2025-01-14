@@ -3,7 +3,7 @@ from sqlalchemy.orm import sessionmaker
 import pyodbc
 from sqlalchemy import create_engine, URL, text
 from query import searchquerybody
-from query import searchquerybody
+from WebScraper import getproduct
 
 url = URL.create(drivername="mssql+pyodbc",
                  host="localhost",
@@ -202,3 +202,58 @@ def logout():
     loggedin = ""
     print('You have been logged out')
     return redirect(url_for('home'))
+
+@app.route('/api/products/<search_input>', methods=['GET', 'POST'])
+def products_api(search_input):
+    getproductinput = search_input
+
+    with Session() as session:
+        products = getproduct(getproductinput)
+
+        for product in products:
+            category_query = text("""
+                SELECT category_id, category_name
+                FROM category
+                WHERE LOWER(category_name) = LOWER(:category_name)
+            """)
+            result = session.execute(category_query, {"category_name": product["category_name"]}).fetchone()
+            print("RES: ", result, product["category_name"])
+
+            if not result:
+                print("Category does not exist. Creating and inserting values.")
+
+                insert_category_name = text("""
+                    INSERT INTO category (category_name)
+                    VALUES (:category_name)
+                """)
+                inse = session.execute(insert_category_name, {"category_name": product["category_name"]})
+                session.commit()
+                print(inse)
+                category_id_query = text("""
+                    SELECT category_id
+                    FROM category
+                    WHERE LOWER(category_name) = LOWER(:category_name)
+                """)
+                category_row = session.execute(category_id_query, {"category_name": product["category_name"]}).fetchone()
+                category_id = category_row["category_id"]
+
+            else:
+                category_id = result["category_id"]
+
+            print("Inserting product into database.")
+            insert_product = text("""
+                INSERT INTO product (product_name, image, price, rating, no_rating, category_id, store_id)
+                VALUES (:product_name, :image, :price, :rating, :no_rating, :category_id, :store_id)
+            """)
+            session.execute(insert_product, {
+                "product_name": product["product_name"],
+                "image": product["image_url"],
+                "price": product["price"],
+                "rating": product["rating"],
+                "no_rating": product["no_rating"],
+                "category_id": category_id,
+                "store_id": 5
+            })
+        session.commit()
+
+    return jsonify(products)
