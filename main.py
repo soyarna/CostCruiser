@@ -1,8 +1,7 @@
-from flask import Flask, render_template, request, redirect, url_for, jsonify, session, flash
+from flask import Flask, render_template, request, redirect, url_for, session, flash
 from sqlalchemy.orm import sessionmaker
 import pyodbc
 from sqlalchemy import create_engine, URL, text
-from query import searchquerybody
 from query import searchquerybody
 
 url = URL.create(drivername="mssql+pyodbc",
