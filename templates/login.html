@@ -16,18 +16,9 @@
 </div>
 <button class="homebutton" onclick="window.location.href='/';">Back to Shore</button>
 
-
 <form action="{{ url_for('login') }}" method="POST" id="loginForm">
     <div class="blue_box">Login</div>
-<div class="error-message">
-{% with messages = get_flashed_messages(with_categories=true) %}
-    {% if messages %}
-        {% for category, message in messages %}
-            <p class="{{ category }}">{{ message }}</p>
-        {% endfor %}
-    {% endif %}
-{% endwith %}
-</div>
+
     <div class="email_bar_login">
         <input type="email" name="email" placeholder="Enter your email" required>
     </div>
@@ -44,6 +35,15 @@
     </div>
 </form>
 
+<div class="error-message-2">
+    <u>{% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <p class="{{ category }}">{{ message }}</p>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}</u>
+</div>
 
 <footer class="lower_border">
     <div class="social-media-icons">

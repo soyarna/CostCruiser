@@ -154,8 +154,7 @@ def login():
 
             if user and user.password == password:
                 loggedin = user.username
-                flash('Login successful!', 'success')
-                return redirect(url_for('login'))
+                return redirect(url_for('home'))
             else:
                 flash('Invalid credentials. Please try again.', 'error')
                 return render_template("login.html"), 401
