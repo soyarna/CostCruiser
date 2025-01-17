@@ -6,8 +6,7 @@ WireFrame: https://miro.com/app/board/uXjVL0d6MQo=/
 
 Git: https://github.com/soyarna/CostCruiser
 
-ERD: https://cdn.discordapp.com/attachments/1314227756795695144/1326107923499450368/ae88c47e8a0a4c38c3a80b542d3c075e.png?ex=6788c5be&is=6787743e&hm=cd1c6e759e1312172807d5740d7469d4c73be0f906c298e15a3ba9697298620a&
-
+ERD: https://imgur.com/a/SRtdtFH
 
 
 # Regler
@@ -26,6 +25,7 @@ Icke-lektionsdagar så börjar standup 10:00
 
 Tillgänglighet
 Se till att vara tillgänglig från 10:00-15:00 (upp till förändring)
+
 
 # To-do list
 To-Do-List for CostCruiser
@@ -52,5 +52,4 @@ Goal med Sprint 1
 
 Goal med Sprint 2
 Skapa en produkt-information sida ✅  - 7/1
-Sätta upp Postman ✅  - 7/1
- 
+Sätta upp Postman ✅  - 7/1 
